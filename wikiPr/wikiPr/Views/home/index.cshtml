@@ -1,0 +1,128 @@
+﻿@model IEnumerable<wikiPr.Models.Article>
+@using wikiPr.Models
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>index</title>
+    @{
+        int compteur = 0;
+        List<string> listedestitres = new List<string>();
+        //List<Article> listedesarticles = new List<Article>();
+        // List<Article> copie = new List<Article>();
+        string titrealire = "";
+        string letitre = "";
+        //foreach (Article a in ViewBag.lesArticles) {
+        //   // listedesarticles.Add(a);
+        //   // copie.Add(a);
+        //    compteur++;
+        //}
+        //for (int i = 0; i < compteur; i++) {
+        //    for (int j = 0; j < compteur; j++) {
+        //        if ((listedesarticles[i].Titre).CompareTo(copie[j].Titre) == 0 && i!=j) {
+        //            if (listedesarticles[i].Contenu == null) {
+        //                listedesarticles.Remove(listedesarticles[i]);
+        //            }
+        //        }
+        //    }
+        //}
+        //foreach(Article a in listedesarticles) {
+        //    listedestitres.Add(a.Titre);
+        //}
+                }
+            
+</head>
+<body>
+    @section up {
+    <br />
+    <div class="btn_accueil">
+        <a href="index">Accueil</a>
+    </div>
+    <div class="btn_ajouter">
+        <a href="ajouter">Ajouter article</a>
+    </div>
+    <div class="btn_apropos">
+        <a href="">À propos</a>
+    </div>
+        }
+
+        @section liste {
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titre)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </th>
+
+            <th></th>
+        </tr>
+
+
+
+
+        @foreach (Article a in ViewBag.lesArticles) {
+            letitre = a.Titre;
+
+
+            <tr>
+                <td>
+                    @Html.ActionLink(letitre, "afficher", "home", new { Titre = letitre }, null)
+                </td>
+                <td>
+                    @a.DateModification
+                </td>
+            </tr>
+        }
+    </table>
+        }
+
+
+    <div class="bienvenue">
+        Bienvenus/bienvenues sur notre site!
+    </div>
+
+    @{
+        foreach (Article a in ViewBag.lesArticles) {
+            letitre = a.Titre;
+            listedestitres.Add(letitre);
+            compteur++;
+        }
+
+        int kompt = 0;
+        bool ok = true;
+        Random rand = new Random();
+        int x = rand.Next(1, compteur);
+        foreach (string s in listedestitres) {
+            kompt++;
+            if (kompt == x && ok) {
+                titrealire = s;
+                ok = false;
+            }
+        }
+    }
+
+   
+    
+    @*<form action="/home/index/@titrealire" method="get">        
+        <input type="submit" value="Lire" name="Submit" id="lire_submit" />                             
+    </form>*@
+    
+    <input type="text" readonly="readonly" value="@titrealire" />&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />
+
+    
+    
+
+
+
+</body>
+</html>
