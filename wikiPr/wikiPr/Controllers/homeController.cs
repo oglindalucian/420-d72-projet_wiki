@@ -39,7 +39,8 @@ namespace wikiPr.Controllers
         [HttpPost]
         public ActionResult ajouter(Article a) {
             Article.Add(a);
-            return RedirectToAction("index");
+          //  return RedirectToAction("index");
+           return RedirectToAction("afficher", new { Titre = a.Titre});
         }
 
         public ActionResult modifier(string titre) {
@@ -51,7 +52,8 @@ namespace wikiPr.Controllers
         [HttpPost]
         public ActionResult modifier(Article a) {
             Article.Update(a);
-            return RedirectToAction("Index");
+            // return RedirectToAction("Index");
+            return RedirectToAction("afficher", new { Titre = a.Titre });
         }
         
         public ActionResult supprimer(string titre) {

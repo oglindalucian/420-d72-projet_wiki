@@ -19,13 +19,13 @@
     @section up {
         <br />
         <div class="btn_accueil">
-            <a href="/home/index">Accueil</a>
+            <a class="btn" href="/home/index">Accueil</a>
         </div>
         <div class="btn_ajouter">
-            <a href="">Ajouter article</a>
+            <a class="btn" href="">Ajouter article</a>
         </div>
         <div class="btn_apropos">
-            <a href="">À propos</a>
+            <a class="btn" href="">À propos</a>
         </div>
     }
 
@@ -108,10 +108,18 @@
     </div>
     <br />
     <div>
-        <input type="button" value="Apperçu de l'article'" onclick=""/>
+        <button onclick="copiertexte()">Apperçu de l'article</button>
+        <input type="submit" value="Apperçu de l'article" onclick="window.location = '';" />
     </div>
+    
     <div id="apercu_art">
         
     </div>
+    <script>
+	    function copiertexte() {
+	        var x = document.getElementById("acopier").firstChild;
+		    document.getElementById("apercu_art").innerHTML = x;
+		}
+    </script>
 </body>
 </html>

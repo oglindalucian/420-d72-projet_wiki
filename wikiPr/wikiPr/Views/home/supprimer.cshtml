@@ -16,13 +16,13 @@
     @section up {
         <br />
         <div class="btn_accueil">
-            <a href="/home/index">Accueil</a>
+            <a class="btn" href="/home/index">Accueil</a>
         </div>
         <div class="btn_ajouter">
-            <a href="/home/ajouter">Ajouter article</a>
+            <a class="btn" href="/home/ajouter">Ajouter article</a>
         </div>
         <div class="btn_apropos">
-            <a href="">À propos</a>
+            <a class="btn" href="">À propos</a>
         </div>
     }
 
@@ -95,8 +95,8 @@
             @Html.AntiForgeryToken()
     
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                <input type="submit" value="Effacer article" class="btn btn-default" /> |
+                @Html.ActionLink("Annuler la suppression", "afficher", new { Titre = Model.Titre }, null)
             </div>
         }
     </div>
