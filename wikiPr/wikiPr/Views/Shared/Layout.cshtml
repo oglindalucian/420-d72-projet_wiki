@@ -13,11 +13,10 @@
 </head>
 <body>
     <div class="menu"> 
-        @RenderSection("up")       
-
+        @RenderSection("up") 
     </div>
     <div class="tablemat">
-        @RenderSection("liste")
+        @RenderSection("liste", false)
     </div>
     <div class="contenu">
         @RenderBody()

@@ -42,84 +42,90 @@
     @section up {
     <br />
     <div class="btn_accueil">
-        <a class="btn" href="index">Accueil</a>
+        <a class="btn" href="">Accueil</a>
     </div>
     <div class="btn_ajouter">
-        <a class="btn" href="ajouter">Ajouter article</a>
+        <a class="btn" href="/home/ajouter">Ajouter article</a>
     </div>
     <div class="btn_apropos">
-        <a class="btn" href="">À propos</a>
+        <a class="btn" href="/home/apropos">À propos</a>
     </div>
         }
+   
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Titre)
+                    </th>
 
-        @section liste {
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Titre)
-            </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateModification)
+                    </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.DateModification)
-            </th>
-
-            <th></th>
-        </tr>
-
+                    <th></th>
+                </tr>
 
 
+                @{ if (ViewBag.lesArticles != null) {
+        try {
 
-        @foreach (Article a in ViewBag.lesArticles) {
-            letitre = a.Titre;
+            foreach (Article a in ViewBag.lesArticles) {
+                letitre = a.Titre;
 
 
-            <tr>
-                <td>
-                    @Html.ActionLink(letitre, "afficher", "home", new { Titre = letitre }, null)
-                </td>
-                <td>
-                    @a.DateModification
-                </td>
-            </tr>
-        }
+                                <tr>
+                                    <td>
+                                        @Html.ActionLink(letitre, "afficher", "home", new { Titre = letitre }, null)
+                                    </td>
+                                    <td>
+                                        @a.DateModification
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                        catch { }
+                    }
+                }
+        
     </table>
-        }
-
 
     <div class="bienvenue">
         Bienvenus/bienvenues sur notre site!
     </div>
 
-    @{
-        foreach (Article a in ViewBag.lesArticles) {
-            letitre = a.Titre;
-            listedestitres.Add(letitre);
-            compteur++;
-        }
 
-        int kompt = 0;
-        bool ok = true;
-        Random rand = new Random();
-        int x = rand.Next(1, compteur);
-        foreach (string s in listedestitres) {
-            kompt++;
-            if (kompt == x && ok) {
-                titrealire = s;
-                ok = false;
+    @{ if (ViewBag.lesArticles != null) {
+                try {
+                    foreach (Article a in ViewBag.lesArticles) {
+                        letitre = a.Titre;
+                        listedestitres.Add(letitre);
+                        compteur++;
+                    }
+
+                    int kompt = 0;
+                    bool ok = true;
+                    Random rand = new Random();
+                    int x = rand.Next(1, compteur);
+                    foreach (string s in listedestitres) {
+                        kompt++;
+                        if (kompt == x && ok) {
+                            titrealire = s;
+                            ok = false;
+                        }
+                    }
+                }
+                catch { }
             }
-        }
     }
 
    
-    
-    @*<form action="/home/index/@titrealire" method="get">        
-        <input type="submit" value="Lire" name="Submit" id="lire_submit" />                             
-    </form>*@
-    
     <input type="text" readonly="readonly" value="@titrealire" />&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />
+    <br/><br/><br />
+    @Html.ActionLink("Ajouter un nouvel article", "ajouter")
 
-    
+
     
 
 

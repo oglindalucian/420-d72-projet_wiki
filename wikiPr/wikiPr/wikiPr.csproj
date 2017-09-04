@@ -116,6 +116,8 @@
     <Content Include="Views\home\modifier.cshtml" />
     <Content Include="Views\home\supprimer.cshtml" />
     <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\AppercuContent.cshtml" />
+    <Content Include="Views\home\apropos.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -37,10 +37,14 @@ namespace wikiPr.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult ajouter(Article a) {
-            Article.Add(a);
-          //  return RedirectToAction("index");
-           return RedirectToAction("afficher", new { Titre = a.Titre});
+            //if (a.Titre == null || a.Titre == "") {
+                Article.Add(a); 
+            //else {
+                Article.Update(a); 
+            
+            return RedirectToAction("afficher", new { Titre = a.Titre});
         }
 
         public ActionResult modifier(string titre) {
@@ -50,6 +54,7 @@ namespace wikiPr.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult modifier(Article a) {
             Article.Update(a);
             // return RedirectToAction("Index");
@@ -67,7 +72,15 @@ namespace wikiPr.Controllers
             Article.Delete(a);
             return RedirectToAction("Index");
         }
-          
+
+        public ActionResult appercu() {
+            return PartialView("AppercuContent");
+        }
+
+        public ActionResult apropos() {
+            return View();
+        }
+
       }
 }
  

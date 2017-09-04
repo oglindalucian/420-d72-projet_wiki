@@ -12,7 +12,7 @@ namespace wikiPr.Models {
         [Required]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Le titre est requis ")]
         public string Titre { get; set; }
 
         public string Contenu { get; set; }
@@ -29,13 +29,12 @@ namespace wikiPr.Models {
             this.Titre = titre;
         }
 
-
         public static List<Article> lesArticles() {
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
-            string requete = "SELECT * FROM Article ORDER BY Titre";
+            string requete = "dbo.GetTitresArticles";
             SqlCommand commande = new SqlCommand(requete, connexion);
-            commande.CommandType = System.Data.CommandType.Text;
+            commande.CommandType = System.Data.CommandType.StoredProcedure;
             List<Article> maListe = new List<Article>();
             try {
                 connexion.Open();
@@ -53,7 +52,7 @@ namespace wikiPr.Models {
                 }
 
                 dr.Close();
-               // maListe.Sort();
+                // maListe.Sort();
                 return maListe;
             }
             catch (Exception e) {
@@ -64,6 +63,42 @@ namespace wikiPr.Models {
             }
             return null;
         }
+
+
+        //public static List<Article> lesArticles() {
+        //    string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
+        //    SqlConnection connexion = new SqlConnection(chConnexion);
+        //    string requete = "SELECT * FROM Article ORDER BY Titre";
+        //    SqlCommand commande = new SqlCommand(requete, connexion);
+        //    commande.CommandType = System.Data.CommandType.Text;
+        //    List<Article> maListe = new List<Article>();
+        //    try {
+        //        connexion.Open();
+        //        SqlDataReader dr = commande.ExecuteReader();
+        //        while (dr.Read()) {
+        //            Article a = new Article {
+        //                Id = (int)dr["Id"],
+        //                Titre = (string)dr["Titre"],
+        //                Contenu = (string)dr["Contenu"],
+        //                DateModification = (DateTime)dr["DateModification"],
+        //                Revision = (int)dr["Revision"],
+        //                IdContributeur = (int)dr["IdContributeur"]
+        //            };
+        //            maListe.Add(a);
+        //        }
+
+        //        dr.Close();
+        //       // maListe.Sort();
+        //        return maListe;
+        //    }
+        //    catch (Exception e) {
+        //        string Message = e.Message;
+        //    }
+        //    finally {
+        //        connexion.Close();
+        //    }
+        //    return null;
+        //}
 
         //public static List<Article> unArticle(string titre) {
         //    string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
@@ -177,6 +212,7 @@ namespace wikiPr.Models {
             string requete = "UPDATE Article SET Titre = '" + a.Titre +
                 "', DateModification = '" + DateTime.Now + "', Contenu = '" + a.Contenu
                 + "' WHERE Titre = '" + a.Titre + "'";
+               //+ "DELETE FROM Article WHERE Titre = '" + a.Titre + "' LIMIT 1;";
 
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
