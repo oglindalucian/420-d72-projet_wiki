@@ -1,0 +1,104 @@
+﻿@model wikiPr.Models.Article
+@using wikiPr.Models
+
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>afficher</title>
+</head>
+<body>
+
+    @section up {
+        <br />
+        <div class="btn_accueil">
+            <a class="btn" href="/home/index">Accueil</a>
+        </div>
+        <div class="btn_ajouter">
+            <a class="btn" href="home/ajouter">Ajouter article</a>
+        </div>
+        <div class="btn_apropos">
+            <a class="btn" href="">À propos</a>
+        </div>
+    }
+
+    @section liste {
+    <table class="table">
+        @foreach (Article a in ViewBag.lesArticles) {
+        string letitre = a.Titre;
+
+            <tr>
+                <td>
+                    @Html.ActionLink(letitre, "afficher", "home", new { Titre = letitre }, null)
+                </td>
+                <td>
+                    @a.DateModification
+                </td>
+            </tr>
+        }
+    </table>
+    }
+
+
+    <div>
+        <h4>Article</h4>
+        <hr />
+        @if(Model.Contenu!=null && Model.Contenu!="") { 
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Titre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Titre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Contenu)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Contenu)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DateModification)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DateModification)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Revision)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Revision)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IdContributeur)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IdContributeur)
+            </dd>
+    
+        </dl>
+        } else {
+            <h3 style="color:red">Cet article n'existe pas!</h3>
+            <p>Ajouter l'article: @Html.ActionLink("Ajouter", "ajouter", "home", new { Titre = Model.Titre }, null)</p>         
+        }
+    </div>
+    <p>
+        @Html.ActionLink("Modifier", "modifier", new { Titre = Model.Titre }, null) |
+        @Html.ActionLink("Accueil", "Index")
+    </p>
+</body>
+</html>
