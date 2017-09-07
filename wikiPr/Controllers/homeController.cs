@@ -33,6 +33,7 @@ namespace wikiPr.Controllers
             ViewBag.lesArticles = Article.lesArticles();
             if (titre == null) { return View(new Article()); }
             else return View(new Article(titre));
+
            
         }
 
