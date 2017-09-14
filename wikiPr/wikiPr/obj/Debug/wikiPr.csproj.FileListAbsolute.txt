@@ -1,0 +1,50 @@
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\wikiPr.dll.config
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\wikiPr.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\wikiPr.pdb
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Helpers.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Razor.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Webpages.Deployment.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Webpages.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Webpages.Razor.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Razor.xml
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Webpages.xml
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Webpages.Deployment.xml
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Webpages.Razor.xml
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Helpers.xml
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\fr\System.Web.Razor.resources.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\fr\System.Web.Webpages.resources.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\fr\System.Web.Webpages.Deployment.resources.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\fr\System.Web.Webpages.Razor.resources.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\fr\System.Web.Helpers.resources.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\obj\Debug\wikiPr.csprojResolveAssemblyReference.cache
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\obj\Debug\wikiPr.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\obj\Debug\wikiPr.pdb
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\Microsoft.Web.Infrastructure.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Mvc.dll
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\System.Web.Mvc.xml
+C:\toshiba\college de maisonneuve etudes\semestre 4\programmation web2\projet wiki\wikiPr\wikiPr\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\wikiPr.dll.config
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\wikiPr.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\wikiPr.pdb
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Helpers.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Mvc.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Razor.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Webpages.Deployment.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Webpages.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Webpages.Razor.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Razor.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Webpages.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Webpages.Deployment.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Webpages.Razor.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Helpers.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Mvc.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Razor.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Webpages.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Webpages.Deployment.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Webpages.Razor.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Helpers.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.csprojResolveAssemblyReference.cache
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.pdb

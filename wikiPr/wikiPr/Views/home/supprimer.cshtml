@@ -1,0 +1,90 @@
+﻿@model wikiPr.Models.Article
+@using wikiPr.Models
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>supprimer</title>
+</head>
+<body>
+
+    @section up {
+       @Html.Partial("ViewUp")
+    }
+
+    @section liste {
+        @Html.Partial("ViewListe")
+    }
+
+
+    <h3>Etez-vous sur de vouloir supprimer cet article?</h3>
+    <div>
+       
+        <dl class="dl-horizontal">
+            <dt>
+                @*@Html.DisplayNameFor(model => model.Titre)*@
+            </dt>
+    
+            <dd>
+                <div class="affichageTitre" style="margin-left:20px;">
+                    @Html.DisplayFor(model => model.Titre)
+                </div>
+            </dd>
+    
+            <dt>
+                @*@Html.DisplayNameFor(model => model.Contenu)*@
+            </dt>
+    
+            <dd>
+                @*@Html.DisplayFor(model => model.Contenu)*@
+            </dd>
+    
+            <dt>
+                @*@Html.DisplayNameFor(model => model.DateModification)*@
+            </dt>
+    
+            <dd>
+                <br /><br />
+                <div class="ladate">
+                    La date de la derniere modification: @Html.DisplayFor(model => model.DateModification)
+                </div>
+            </dd>
+    
+            <dt>
+                @*@Html.DisplayNameFor(model => model.Revision)*@
+            </dt>
+    
+            <dd>
+                <div class="ladate">
+                    Revision: @Html.DisplayFor(model => model.Revision)
+                </div>
+            </dd>
+    
+            <dt>
+                @*@Html.DisplayNameFor(model => model.IdContributeur)*@
+            </dt>
+    
+            <dd>
+                <div class="ladate">
+                    Le ID du contributeur: @Html.DisplayFor(model => model.IdContributeur)
+                </div>
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Effacer article" class="btn btn-default" /> |
+                @Html.ActionLink("Annuler la suppression", "afficher", new { Titre = Model.Titre }, null)
+            </div>
+        }
+    </div>
+</body>
+</html>
