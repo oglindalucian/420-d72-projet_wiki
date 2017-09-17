@@ -44,9 +44,7 @@ C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Helpers.resources
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.csprojResolveAssemblyReference.cache
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.dll
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.pdb
-C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.csproj.GenerateResource.Cache
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Mvc.dll
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Mvc.xml
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Mvc.resources.dll
-C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.Views.ResourceView.resources

@@ -6,32 +6,40 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
 using wikiPr.Models.Views;
+//using wikiPr.Ressource;
+
 
 namespace wikiPr.Models {
     public class Utilisateur {
        // public static string[] Langues = { "fr-CA", "en-CA" };
 
-        public static List<string> Langues = new List<string>();
+        //public static List<string> Langues = new List<string>();
+
+       // public static
+          //  enum Langues { fr, en, es };
+        enum Langues : byte { fr, en, es };
         
         [Key]
         [Required]
         public int Id { get; set; }
 
+       // [Display(Name = "Prenom", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Indiquez votre prenom")]
         public string Prenom { get; set; }
 
+       // [Display(Name = "Nom de famille", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Indiquez votre nom de famille")]
         public string NomFamille { get; set; }
 
-       // [Uniqueness("Courriel")]
+        // [Uniqueness("Courriel")]
+     //   [Display(Name = "Adresse courriel", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Indiquez votre courriel")]
         [DataType(DataType.EmailAddress)]
-        [Display(Name = "Adresse Courriel")]
         public string Courriel { get; set; }
 
         [Required(ErrorMessage = "Indiquez le mot de passe"), StringLength(50, MinimumLength=6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Mot de passse")]
+     //   [Display(Name = "Mot de passse", ResourceType = typeof(ResourceView))]
         public string MDP { get; set; }
 
         //[Required(ErrorMessage = "Confirmez le mot de passe!"), StringLength(50, MinimumLength = 6)]
@@ -41,6 +49,7 @@ namespace wikiPr.Models {
         //public string Confirmation { get; set; }
 
         [Required(ErrorMessage = "Choisissez la langue")]
+       // [Display(Name = "Langue", ResourceType = typeof(ResourceView))]
         public string Langue { get; set; }
 
         //14. Pour faciliter la conversion entre un UtilisateurInscription et un Utilisateur, 

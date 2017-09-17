@@ -16,10 +16,10 @@ namespace wikiPr.Models.Views {
         [Display(Name = "Mot de passse")]
         public string MDP { get; set; }
 
-        [Required(ErrorMessage = "Confirmez le mot de passe!"), StringLength(50, MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirmez le mot de passse:")]
-        [Compare("MDP", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]
-        public string Confirmation { get; set; }
+        //[Required(ErrorMessage = "Confirmez le mot de passe!"), StringLength(50, MinimumLength = 6)]
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Confirmez le mot de passse:")]
+        //[Compare("MDP", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]
+        //public string Confirmation { get; set; }
     }
 }

@@ -12,9 +12,28 @@ namespace wikiPr.Controllers
     public class homeController : Controller
     {
         // GET: home
-        
+        string str;
+
         public ActionResult Index() {
             ViewBag.lesArticles = Article.lesArticles();
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
             return View(Article.lesArticles());
         }
 
@@ -22,12 +41,48 @@ namespace wikiPr.Controllers
             Article a = Article.Find(titre);
             ViewBag.letitre = titre;
             ViewBag.lesArticles = Article.lesArticles();
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
             return View(a);
         }
 
         [Authorize]
         public ActionResult ajouter(string titre) {
             ViewBag.lesArticles = Article.lesArticles();
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
             if (titre == null) { return View(new Article()); }
             else return View(new Article(titre));
 
@@ -36,22 +91,86 @@ namespace wikiPr.Controllers
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ajouter(Article a) {
-            Article.Add(a);         
-            Article.Update(a);
-        return RedirectToAction("afficher", new { Titre = a.Titre });
+            Article.Add(a);
+            string courriel = User.Identity.Name;
+            Utilisateur u = Utilisateurs.FindByCourriel(courriel);
+            int id = u.Id;
+            Article.Update(a, id);
+            
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+          //  Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
+
+            return RedirectToAction("afficher", new { Titre = a.Titre });
             }
 
         [Authorize]
         public ActionResult modifier(string titre) {
             ViewBag.titre = titre;
             ViewBag.lesArticles = Article.lesArticles();
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
+
             return View(Article.Find(titre));
         }
 
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult modifier(Article a) {
-            Article.Update(a);
+            string courriel = User.Identity.Name;
+            Utilisateur u = Utilisateurs.FindByCourriel(courriel);
+            int id = u.Id;
+            Article.Update(a, id);
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+          //  Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
+
             return RedirectToAction("afficher", new { Titre = a.Titre });
         }
 
@@ -59,6 +178,25 @@ namespace wikiPr.Controllers
         public ActionResult supprimer(string titre) {
             ViewBag.lesArticles = Article.lesArticles();
             Article a = Article.Find(titre);
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
+
             return View(a);
         }
 

@@ -14,5 +14,7 @@ namespace wikiPr.Models.Views {
 
         [Required(ErrorMessage = "Choisissez la langue")]
         public string Langue { get; set; }
+
+        
     }
 }

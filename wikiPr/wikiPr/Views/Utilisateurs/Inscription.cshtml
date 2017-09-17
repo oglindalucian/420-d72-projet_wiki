@@ -50,8 +50,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Langue, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Langue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Langue, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.Langue, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownList("Langue", new List<SelectListItem> {
+                new SelectListItem {Text="francais", Value="fr", Selected=true},
+                new SelectListItem {Text="espagnol", Value="es"},
+                new SelectListItem {Text="anglais", Value="en"} })
+                
+                 @Html.ValidationMessageFor(model => model.Langue, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -64,5 +69,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Accueil", "index", "home")
 </div>

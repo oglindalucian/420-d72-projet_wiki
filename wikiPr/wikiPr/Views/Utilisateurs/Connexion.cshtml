@@ -1,5 +1,6 @@
-﻿@{
-    Layout = null;
+﻿
+@{
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 <!DOCTYPE html>
 <html>
@@ -17,35 +18,23 @@
 
         @using (Html.BeginForm("Connexion", "Utilisateurs")) {
             <div class="form-group">
-                @Html.Label("Courriel")
+                @Html.Label("Nom d'utilisateur")
                 <div class="col-md-10">
-                    @Html.TextBox("Courriel")
+                    @Html.TextBox("username")
                 </div>
             </div>
             <div class="form-group">
                 @Html.Label("Mot de passe")
                 <div class="col-md-10">
-                    @Html.Password("MDP")
+                    @Html.Password("password")
                 </div>
             </div>
-            @*<div class="form-group">
-                @Html.Label("Confirmation du mot de passe")
-                <div class="col-md-10">
-                    @Html.Password("Confirmation")
-                </div>
-            </div>*@
             <input type="hidden" name="ReturnUrl" value="@ViewBag.ReturnUrl" />
             <input type="submit" value="Connexion" />
         }
     </div>
-
-
-
-    <p>
-        @Html.ActionLink("Accueil", "index", "home")
-    </p>
-
+    <br /><br />
+    @Html.ActionLink("Accueil", "Index", "home")
 </body>
 </html>
-
 
