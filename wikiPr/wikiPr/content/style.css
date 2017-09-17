@@ -109,3 +109,35 @@ a.btn:link, a.btn:visited, a.btn:hover, a.btn:active {color:white;}
     color:blue;
     font-style:oblique;
 }
+
+.inscription{
+    float: left;
+    margin-left: 300px;
+    border: 1px groove violet;
+    text-align: center;
+    display: inline;
+    background-color: white;
+    color: blue;
+    text-decoration: none;
+
+}
+
+.connexion {
+    position: relative;
+    float: left;
+    margin-left: 50px;
+     border: 1px groove violet;
+    text-align: center;
+    display: inline;
+    background-color: white;
+    color: blue;
+    text-decoration: none;
+}
+
+.bonjour {
+    position:relative;
+    float:right;
+    margin-right:20px;
+    color:blue;
+    font-style:italic;
+}

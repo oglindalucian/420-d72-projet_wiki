@@ -95,8 +95,11 @@
     </div>
     <p>
         @try {
-        @Html.ActionLink("Modifier", "modifier", new { Titre = Model.Titre }, null) } catch { } |
-        @Html.ActionLink("Accueil", "Index")
+            if(User.Identity.IsAuthenticated) { 
+        @Html.ActionLink("Modifier", "modifier", new { Titre = Model.Titre }, null) }
+        }
+        catch { } |
+        @Html.ActionLink("Accueil", "index", "home")
     </p>
           
 </body>

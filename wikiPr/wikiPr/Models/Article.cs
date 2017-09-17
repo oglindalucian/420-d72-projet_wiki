@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 
 namespace wikiPr.Models {
     public class Article {
-       // [Uniqueness("Titre")]
+        // [Uniqueness("Titre")]
         //   [Unique(ErrorMessage = "This already exist !!")]
-     //   [Remote("verifierTitre", "home", ErrorMessage = "Titre Already Exist.")]
+        //   [Remote("verifierTitre", "home", ErrorMessage = "Titre Already Exist.")]
+
+      //  [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
         public string Titre { get; set; }
 
+      //  [Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
         public string Contenu { get; set; }
 
+     //   [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
         public DateTime DateModification { get; set; }
 
+     //   [Display(Name = "Révision", ResourceType = typeof(ResourceView))]
         public int Revision { get; set; }
 
+      //  [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
         public int IdContributeur { get; set; }
 
         public Article() {}

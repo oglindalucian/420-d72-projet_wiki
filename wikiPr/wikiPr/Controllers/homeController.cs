@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using wikiPr.Models;
@@ -23,6 +25,7 @@ namespace wikiPr.Controllers
             return View(a);
         }
 
+        [Authorize]
         public ActionResult ajouter(string titre) {
             ViewBag.lesArticles = Article.lesArticles();
             if (titre == null) { return View(new Article()); }
@@ -37,8 +40,8 @@ namespace wikiPr.Controllers
             Article.Update(a);
         return RedirectToAction("afficher", new { Titre = a.Titre });
             }
-        
 
+        [Authorize]
         public ActionResult modifier(string titre) {
             ViewBag.titre = titre;
             ViewBag.lesArticles = Article.lesArticles();
@@ -51,7 +54,8 @@ namespace wikiPr.Controllers
             Article.Update(a);
             return RedirectToAction("afficher", new { Titre = a.Titre });
         }
-        
+
+        [Authorize]
         public ActionResult supprimer(string titre) {
             ViewBag.lesArticles = Article.lesArticles();
             Article a = Article.Find(titre);
@@ -102,6 +106,32 @@ namespace wikiPr.Controllers
         //        return Json(true, JsonRequestBehavior.AllowGet);
         //    }
         //}
+
+    /*    public ActionResult GetMessageRessource() {
+
+            string str;
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //Article a = new Article();
+            //a.Titre = "Yousra";
+            //mess.Contenu = "Bienvenue en Web ASP.Net MVC4";
+            //mess.Date = new DateTime(2017, 09, 08);
+            if (str.IndexOf("fr") != -1 && str.IndexOf("en") == -1 && str.IndexOf("es") == -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            else if (str.IndexOf("fr") == -1 && str.IndexOf("en") != -1 && str.IndexOf("es") == -1) {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            }
+            else if (str.IndexOf("fr") == -1 && str.IndexOf("en") == -1 && str.IndexOf("es") != -1) {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
+
+            // return View(mess);
+            return View();
+        }    */
 
     }
 }

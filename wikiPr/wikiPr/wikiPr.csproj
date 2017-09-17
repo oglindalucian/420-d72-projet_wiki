@@ -100,12 +100,25 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\homeController.cs" />
+    <Compile Include="Controllers\UtilisateursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Apercu.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\PasswordHash.cs" />
+    <Compile Include="Models\Utilisateur.cs" />
+    <Compile Include="Models\Utilisateurs.cs" />
+    <Compile Include="Models\Views\UtilisateurInscription.cs" />
+    <Compile Include="Models\Views\UtilisateurMP.cs" />
+    <Compile Include="Models\Views\UtilisateurProfil.cs" />
+    <Compile Include="Models\Views\UtilisateursConnexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ResourceView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceView.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -123,6 +136,9 @@
     <Content Include="Views\home\ViewListe.cshtml" />
     <Content Include="Views\home\Appercu.cshtml" />
     <Content Include="Views\home\Apercu.cshtml" />
+    <Content Include="Views\Utilisateurs\Inscription.cshtml" />
+    <Content Include="Views\Utilisateurs\Connexion.cshtml" />
+    <Content Include="Views\Utilisateurs\Profil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -130,7 +146,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ResourceView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

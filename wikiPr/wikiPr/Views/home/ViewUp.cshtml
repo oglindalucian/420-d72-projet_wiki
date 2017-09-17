@@ -8,3 +8,20 @@
 <div class="btn_apropos">
     <a class="btn" href="/home/apropos">À propos</a>
 </div>
+@if (!User.Identity.IsAuthenticated) {
+    <div class="inscription">
+        <a href="/Utilisateurs/Inscription">Inscription</a>
+    </div>
+    <div class="connexion">
+        <a href="/Utilisateurs/Connexion">Connexion</a>
+    </div>
+}
+else if (User.Identity.IsAuthenticated) {
+    <div class="inscription">
+        <a href="/Utilisateurs/Profil">Profil</a>
+    </div>
+    <div class="connexion">
+        <a href="/Utilisateurs/Logout">Deconnexion</a>
+    </div>
+    <div class="bonjour">Bonjour @User.Identity.Name!</div>
+}

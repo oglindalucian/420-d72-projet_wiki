@@ -29,14 +29,19 @@
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.Titre)
+                        @*@wikiPr.Ressource.ResourceView.Titre*@
                     </th>
 
                     <th>
                         @Html.DisplayNameFor(model => model.DateModification)
+                        @*@wikiPr.Ressource.ResourceView.DateModification*@
                     </th>
 
                     <th></th>
                 </tr>
+                @*<dd>@DemoCours.Ressource.ResourceView.Contenu</dd>
+                <dt>@Model.Contenu</dt>*@
+
 
 
                 @{ if (ViewBag.lesArticles != null) {
