@@ -254,7 +254,7 @@ namespace wikiPr.Controllers
             //UtilisateurMP ump = new UtilisateurMP(u.Courriel, u.MDP);
             //string motNouveau = ump.MDP2;
             //Utilisateurs.Update(courriel, motAncien, motNouveau);
-            Utilisateurs.update(u);
+            Utilisateurs.updates(u);
             return RedirectToAction("Index", "home");
         }
 

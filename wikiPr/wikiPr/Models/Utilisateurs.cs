@@ -67,8 +67,8 @@ namespace wikiPr.Models {
                 //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 //string hashString = BitConverter.ToString(hash);
 
-                string requete = "UPDATE Utilisateurs SET Prenom = '" + u.Prenom + "', NomFamille = '" 
-                    + u.NomFamille + "', Langue = '" + u.Langue + "' WHERE Courriel = '" + u.Courriel + "'"; 
+                string requete = "UPDATE Utilisateurs SET Prenom = '" + u.Prenom + "', NomFamille = '"
+                    + u.NomFamille + "', Langue = '" + u.Langue + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -89,18 +89,47 @@ namespace wikiPr.Models {
             }
         }
 
-        public static bool update(Utilisateur u) {
-            using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
+        //public static bool update(Utilisateur u) {
+        //    using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
+        //        byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+        //        byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+        //        string hashString = BitConverter.ToString(hash);
+
+        //        string requete = "UPDATE Utilisateurs SET MDP = '" + u.MDP + "' WHERE Courriel = '" + u.Courriel + "'";
+
+        //        SqlCommand cmd = new SqlCommand(requete, connexion);
+        //        cmd.CommandType = System.Data.CommandType.Text;
+        //        try {
+        //            connexion.Open();
+        //            cmd.ExecuteNonQuery();
+        //            return true;
+
+        //        }
+        //        catch (Exception e) {
+        //            string Message = e.Message;
+        //            return false;
+        //        }
+        //        finally {
+        //            connexion.Close();
+        //        }
+
+        //    }
+        //}
+
+
+        public static bool updates(Utilisateur u) {
+            string cStr = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
+            using (SqlConnection cnx = new SqlConnection(cStr)) {
                 byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
                 byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 string hashString = BitConverter.ToString(hash);
 
-                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Courriel = '" + u.Courriel + "'";
+                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;    //Courriel = '" + u.Courriel + "'";
 
-                SqlCommand cmd = new SqlCommand(requete, connexion);
+                SqlCommand cmd = new SqlCommand(requete, cnx);
                 cmd.CommandType = System.Data.CommandType.Text;
                 try {
-                    connexion.Open();
+                    cnx.Open();
                     cmd.ExecuteNonQuery();
                     return true;
 
@@ -110,11 +139,16 @@ namespace wikiPr.Models {
                     return false;
                 }
                 finally {
-                    connexion.Close();
+                    cnx.Close();
                 }
 
             }
         }
+
+
+
+
+
 
         //Création d'une commande
         //SqlCommand commande = new SqlCommand("UpdateUtilisateur", connexion);

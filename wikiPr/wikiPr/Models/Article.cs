@@ -108,17 +108,34 @@ namespace wikiPr.Models {
                 connexion.Close();
             }
             return null;
-        }        
+        }
+
+        //public static void Update(Article a, int id) {
+
+
+        //    string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
+        //    SqlConnection connexion = new SqlConnection(chConnexion);
+        //    string requete = "UPDATE Article SET Titre = '" + a.Titre +
+        //        "', DateModification = '" + DateTime.Now + "', Contenu = '" + a.Contenu + "', IdContributeur = " + id
+        //        + "' WHERE Titre = '" + a.Titre + "'";
+
+        //    SqlCommand commande = new SqlCommand(requete, connexion);
+        //    commande.CommandType = System.Data.CommandType.Text;
+        //    try {
+        //        connexion.Open();
+        //        commande.ExecuteNonQuery();
+        //        connexion.Close();
+        //    }
+        //    catch { }
+        //}
 
         public static void Update(Article a, int id) {
-          
-
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
             string requete = "UPDATE Article SET Titre = '" + a.Titre +
-                "', DateModification = '" + DateTime.Now + "', Contenu = '" + a.Contenu + "', IdContributeur = " + id
-                + "' WHERE Titre = '" + a.Titre + "'";
-              
+                 "', DateModification = '" + DateTime.Now + "', Contenu = '" + a.Contenu + "', IdContributeur = " + id
+                 + " WHERE Titre = '" + a.Titre + "'";
+
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
             try {

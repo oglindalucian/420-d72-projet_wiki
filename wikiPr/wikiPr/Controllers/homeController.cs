@@ -17,22 +17,22 @@ namespace wikiPr.Controllers
         public ActionResult Index() {
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            //if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //if (str.IndexOf("fr") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //}
+            //if (str.IndexOf("en") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //}
+            //else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //}
 
             return View(Article.lesArticles());
         }
@@ -42,22 +42,22 @@ namespace wikiPr.Controllers
             ViewBag.letitre = titre;
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            //if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //if (str.IndexOf("fr") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //}
+            //if (str.IndexOf("en") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //}
+            //else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //}
 
             return View(a);
         }
@@ -66,22 +66,22 @@ namespace wikiPr.Controllers
         public ActionResult ajouter(string titre) {
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            //if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //if (str.IndexOf("fr") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //}
+            //if (str.IndexOf("en") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //}
+            //else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //}
 
             if (titre == null) { return View(new Article()); }
             else return View(new Article(titre));
@@ -98,22 +98,22 @@ namespace wikiPr.Controllers
             Article.Update(a, id);
             
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+          //  str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
           //  Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //if (str.IndexOf("fr") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //}
+            //if (str.IndexOf("en") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //}
+            //else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //}
 
 
             return RedirectToAction("afficher", new { Titre = a.Titre });
@@ -124,22 +124,22 @@ namespace wikiPr.Controllers
             ViewBag.titre = titre;
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            //if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //if (str.IndexOf("fr") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //}
+            //if (str.IndexOf("en") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //}
+            //else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //}
 
 
             return View(Article.Find(titre));
@@ -153,22 +153,22 @@ namespace wikiPr.Controllers
             int id = u.Id;
             Article.Update(a, id);
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-          //  Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //  Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            //    if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //    if (str.IndexOf("fr") != -1) {
+            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //    }
+            //    if (str.IndexOf("en") != -1) {
+            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //    }
+            //    else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //    }
 
 
             return RedirectToAction("afficher", new { Titre = a.Titre });
@@ -179,22 +179,22 @@ namespace wikiPr.Controllers
             ViewBag.lesArticles = Article.lesArticles();
             Article a = Article.Find(titre);
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (u != null) str = u.Langue;
+            //str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            //Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            //if (u != null) str = u.Langue;
 
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+            //if (str.IndexOf("fr") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+            //}
+            //if (str.IndexOf("en") != -1) {
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
 
-            }
-            else {
+            //}
+            //else {
 
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
+            //    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            //}
 
 
             return View(a);
