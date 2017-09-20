@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Data.SqlClient;
-//using wikiPr.Ressource;
+using wikiPr.Ressource;
 
 namespace wikiPr.Models {
     public class Article {
@@ -11,20 +11,20 @@ namespace wikiPr.Models {
         //   [Unique(ErrorMessage = "This already exist !!")]
         //   [Remote("verifierTitre", "home", ErrorMessage = "Titre Already Exist.")]
 
-       // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
         public string Titre { get; set; }
 
-       // [Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
         public string Contenu { get; set; }
 
-       // [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
         public DateTime DateModification { get; set; }
 
-      //  [Display(Name = "Révision", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Révision", ResourceType = typeof(ResourceView))]
         public int Revision { get; set; }
 
-       // [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
         public int IdContributeur { get; set; }
 
         public Article() {}

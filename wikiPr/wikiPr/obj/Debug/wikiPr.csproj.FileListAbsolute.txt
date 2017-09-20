@@ -48,3 +48,11 @@ C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\Microsoft.Web.Infrastructure.dl
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Mvc.dll
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\System.Web.Mvc.xml
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\System.Web.Mvc.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\en\wikiPr.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\fr\wikiPr.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.Ressource.ResourceView.resources
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.Ressource.ResourceView.en.resources
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.Ressource.ResourceView.fr.resources
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.csproj.GenerateResource.Cache
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\en\wikiPr.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\fr\wikiPr.resources.dll

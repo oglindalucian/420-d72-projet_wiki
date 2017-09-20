@@ -22,7 +22,7 @@
     }
 
 
-    <h3>Etez-vous sur de vouloir supprimer cet article?</h3>
+    <h3>Êtes-vous sûr de vouloir supprimer cet article?</h3>
     <div>
        
         <dl class="dl-horizontal">
@@ -46,27 +46,30 @@
     
             <dt>
                 @*@Html.DisplayNameFor(model => model.DateModification)*@
+                @wikiPr.Ressource.ResourceView.DateModification
             </dt>
     
             <dd>
                 <br /><br />
                 <div class="ladate">
-                    La date de la derniere modification: @Html.DisplayFor(model => model.DateModification)
+                    La date de la dernière modification: @Html.DisplayFor(model => model.DateModification)
                 </div>
             </dd>
     
             <dt>
                 @*@Html.DisplayNameFor(model => model.Revision)*@
+                @wikiPr.Ressource.ResourceView.Revision
             </dt>
     
             <dd>
                 <div class="ladate">
-                    Revision: @Html.DisplayFor(model => model.Revision)
+                    Révision: @Html.DisplayFor(model => model.Revision)
                 </div>
             </dd>
     
             <dt>
                 @*@Html.DisplayNameFor(model => model.IdContributeur)*@
+                @wikiPr.Ressource.ResourceView.IdContributeur
             </dt>
     
             <dd>
