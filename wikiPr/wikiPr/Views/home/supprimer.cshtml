@@ -2,6 +2,40 @@
 @using wikiPr.Models
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string question = "Êtes-vous sûr de vouloir supprimer cet article?";
+    string ladate = "La date de la dernière modification:";
+    string revision = "Révision:";
+    string leid = "Le ID du contributeur:";
+    string effacer = "Effacer article";
+    string annuler = "Annuler la suppression";
+
+
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        question = "Are you sure you want to delete this article?";
+        ladate = "Latest modification date:";
+        revision = "Review:";
+        leid = "Contributor's ID:";
+        effacer = "Delete article";
+        annuler = "Undo delete";
+    }
+
+    if (str.IndexOf("es") != -1) {
+        question = "¿Está seguro de que desea eliminar este artículo";
+        ladate = "Última fecha de modificación:";
+        revision = "Revisión:";
+        leid = "ID del colaborador:";
+        effacer = "Eliminar artículo";
+        annuler = "Deshacer eliminación";
+    }
 }
 
 <!DOCTYPE html>
@@ -22,7 +56,7 @@
     }
 
 
-    <h3>Êtes-vous sûr de vouloir supprimer cet article?</h3>
+    <h3>@question</h3>
     <div>
        
         <dl class="dl-horizontal">
@@ -46,35 +80,35 @@
     
             <dt>
                 @*@Html.DisplayNameFor(model => model.DateModification)*@
-                @wikiPr.Ressource.ResourceView.DateModification
+                @*@wikiPr.Ressource.ResourceView.DateModification*@
             </dt>
     
             <dd>
                 <br /><br />
                 <div class="ladate">
-                    La date de la dernière modification: @Html.DisplayFor(model => model.DateModification)
+                    @ladate @Html.DisplayFor(model => model.DateModification)
                 </div>
             </dd>
     
             <dt>
                 @*@Html.DisplayNameFor(model => model.Revision)*@
-                @wikiPr.Ressource.ResourceView.Revision
+                @*@wikiPr.Ressource.ResourceView.Revision*@
             </dt>
     
             <dd>
                 <div class="ladate">
-                    Révision: @Html.DisplayFor(model => model.Revision)
+                    @revision @Html.DisplayFor(model => model.Revision)
                 </div>
             </dd>
     
             <dt>
                 @*@Html.DisplayNameFor(model => model.IdContributeur)*@
-                @wikiPr.Ressource.ResourceView.IdContributeur
+                @*@wikiPr.Ressource.ResourceView.IdContributeur*@
             </dt>
     
             <dd>
                 <div class="ladate">
-                    Le ID du contributeur: @Html.DisplayFor(model => model.IdContributeur)
+                    @leid @Html.DisplayFor(model => model.IdContributeur)
                 </div>
             </dd>
     
@@ -84,8 +118,8 @@
             @Html.AntiForgeryToken()
     
             <div class="form-actions no-color">
-                <input type="submit" value="Effacer article" class="btn btn-default" /> |
-                @Html.ActionLink("Annuler la suppression", "afficher", new { Titre = Model.Titre }, null)
+                <input type="submit" value="@effacer" class="btn btn-default" /> |
+                @Html.ActionLink(@annuler, "afficher", new { Titre = Model.Titre }, null)
             </div>
         }
     </div>

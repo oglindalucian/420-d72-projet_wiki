@@ -1,6 +1,27 @@
-﻿
+﻿@using wikiPr.Models
+
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string erreur = "Erreur d'authentification";
+    string accueil = "Accueil";
+
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        erreur = "Authentification error";
+        accueil = "Home";
+    }
+    if (str.IndexOf("es") != -1) {
+        erreur = "Error de autenticación";
+        accueil = "Recepción";
+    }
 }
 <!DOCTYPE html>
 <html>
@@ -12,7 +33,7 @@
     <div>
         @if (ViewBag.error != "") {
             <div class="alert alert-danger" role="alert">
-                <b>Erreur d'authentification</b> @ViewBag.error
+                <b>@erreur</b> @ViewBag.error
             </div>
         }
 
@@ -36,7 +57,7 @@
         }
     </div>
     <br /><br />
-    @Html.ActionLink("Accueil", "Index", "home")
+    @Html.ActionLink(@accueil, "Index", "home")
 </body>
 </html>
 

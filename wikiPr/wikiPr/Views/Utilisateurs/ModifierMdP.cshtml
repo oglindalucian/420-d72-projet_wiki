@@ -1,8 +1,29 @@
 ﻿@model wikiPr.Models.Utilisateur
+@using wikiPr.Models
 
 @{
     ViewBag.Title = "ModifierMdP";
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string save = "Sauvegarder";
+    string accueil = "Accueil";
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        save = "Save";
+        accueil = "Home";
+    }
+
+    if (str.IndexOf("es") != -1) {
+        save = "Guardar";
+        accueil = "Recepción";
+    }
 }
 
 <h2>ModifierMdP</h2>
@@ -60,12 +81,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                <input type="submit" value="@save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Accueil", "Index", "home")
+    @Html.ActionLink(@accueil, "Index", "home")
 </div>

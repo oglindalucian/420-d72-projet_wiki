@@ -1,8 +1,28 @@
 ﻿@model wikiPr.Models.Article
 @using wikiPr.Models
 @{
-      Layout = "~/Views/Shared/Layout.cshtml";                
-   
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string creer = "Créer article";
+    string annuler = "Annuler l'ajout";
+
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        creer = "Create article";
+        annuler = "Undo add article";
+    }
+    if (str.IndexOf("es") != -1) {
+        creer = "Crear artículo";
+        annuler = "Deshacer añadir artículo";
+    }
+
 }
 
 <!DOCTYPE html>
@@ -69,14 +89,14 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Créer article" class="btn btn-default" />
+                        <input type="submit" value="@creer" class="btn btn-default" />
                     </div>
                 </div>
             </div>
     }
     <br />
     <div>
-        @Html.ActionLink("Annuler l'ajout", "Index")
+        @Html.ActionLink(@annuler, "Index")
     </div>
     <br />
     <div>

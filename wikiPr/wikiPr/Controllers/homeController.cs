@@ -6,6 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using wikiPr.Models;
+using wikiPr.Ressource;
 
 namespace wikiPr.Controllers
 {

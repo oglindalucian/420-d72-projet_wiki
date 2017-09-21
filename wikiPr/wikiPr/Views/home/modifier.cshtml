@@ -2,6 +2,35 @@
 @using wikiPr.Models
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string sauvegarder = "Sauvegarder";
+    string anmod = "Annuler modification";
+    string accueil = "Accueil";
+    string suppr = "Supprimer article";
+
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        sauvegarder = "Save";
+        anmod = "Undo changes";
+        accueil = "Home";
+        suppr = "Delete article";
+
+    }
+
+    if (str.IndexOf("es") != -1) {
+        sauvegarder = "Salvar";
+        anmod = "Deshacer cambios";
+        accueil = "Recepción";
+        suppr = "Eliminar artículo";
+
+    }
 }
 
 <!DOCTYPE html>
@@ -59,16 +88,16 @@
                
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                    <input type="submit" value="@sauvegarder" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
     <div>
-        @Html.ActionLink("Annuler modification", "afficher", new { Titre = Model.Titre }, null) |
-        @Html.ActionLink("Accueil", "Index") |
-        @Html.ActionLink("Supprimer article", "supprimer", new { Titre = Model.Titre }, null)
+        @Html.ActionLink(@anmod, "afficher", new { Titre = Model.Titre }, null) |
+        @Html.ActionLink(@accueil, "Index") |
+        @Html.ActionLink(@suppr, "supprimer", new { Titre = Model.Titre }, null)
     </div>
 </body>
 </html>

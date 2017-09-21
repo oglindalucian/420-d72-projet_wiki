@@ -16,7 +16,26 @@
         List<string> listedestitres = new List<string>();
         string titrealire = "";
         string letitre = "";
-        
+
+        string bienvenue = "Bienvenus/bienvenues sur notre site!";
+        string auna = "Ajouter un nouvel article";
+        string str = "";
+
+        try {
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+        }
+        catch { str = "fr"; }
+
+        if (str.IndexOf("en") != -1) {
+            bienvenue = "Welcome to our website!";
+            auna = "Add a new article";
+        }
+        if (str.IndexOf("es") != -1) {
+            bienvenue = "Bienvenido a nuestro sitio web!";
+            auna = "Añadir un nuevo artículo";
+        }
      }
             
 </head>
@@ -68,7 +87,8 @@
     </table>
 
     <div class="bienvenue">
-        Bienvenus/bienvenues sur notre site!
+        @*Bienvenus/bienvenues sur notre site!*@
+        @bienvenue 
     </div>
 
 
@@ -100,7 +120,9 @@
     <input type="text" readonly="readonly" value="@titrealire" />&nbsp;&nbsp;&nbsp;&nbsp;
     <input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />
     <br/><br/><br />
-    @Html.ActionLink("Ajouter un nouvel article", "ajouter")
+    @Html.ActionLink(@auna, "ajouter")
+
+    @*"Ajouter un nouvel article"*@
 
 
     

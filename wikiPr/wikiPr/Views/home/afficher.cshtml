@@ -3,6 +3,46 @@
 
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string ladate = "La date de la dernière modification:";
+    string revision = "Révision:";
+    string leid = "Le ID du contributeur:";
+    string nexistepas = "Cet article n'existe pas!";
+    string ajouterart = "Ajouter l'article:";
+    string ajouter = "Ajouter";
+    string modifier = "Modifier";
+    string accueil = "Accueil";
+
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        ladate = "Latest modification date:";
+        revision = "Review:";
+        leid = "Contributor's ID:";
+        nexistepas = "This article doesn't exist!";
+        ajouterart = "Add article:";
+        ajouter = "Add";
+        modifier = "Modify";
+        accueil = "Home";
+    }
+
+    if (str.IndexOf("es") != -1) {
+        ladate = "Última fecha de modificación:";
+        revision = "Revisión:";
+        leid = "ID del colaborador:";
+        nexistepas = "Este artículo no existe!";
+        ajouterart = "Añadir artículo:";
+        ajouter = "Añadir";
+        modifier = "Modificar";
+        accueil = "Recepción";
+    }
+
 }
 
 <!DOCTYPE html>
@@ -54,13 +94,14 @@
 
                         <dt>
                             @*@Html.DisplayNameFor(model => model.DateModification)*@
-                            @wikiPr.Ressource.ResourceView.DateModification
+                            @*@wikiPr.Ressource.ResourceView.DateModification*@
                         </dt>
 
                         <dd>
                             <br /><br />
                             <div class="ladate">
-                                La date de la dernière modification: @Html.DisplayFor(model => model.DateModification)
+                                @*La date de la dernière modification:*@ 
+                                @ladate @Html.DisplayFor(model => model.DateModification)
                             </div>
                         </dd>
 
@@ -70,26 +111,26 @@
 
                         <dd>
                             <div class="ladate">
-                                Revision: @Html.DisplayFor(model => model.Revision)
+                                @revision @Html.DisplayFor(model => model.Revision)
                             </div>
                         </dd>
 
                         <dt>
                             @*@Html.DisplayNameFor(model => model.IdContributeur)*@
-                            @wikiPr.Ressource.ResourceView.IdContributeur
+                            @*@wikiPr.Ressource.ResourceView.IdContributeur*@
                         </dt>
 
                         <dd>
                             <div class="ladate">
-                                Le ID du contributeur: @Html.DisplayFor(model => model.IdContributeur)
+                                @leid @Html.DisplayFor(model => model.IdContributeur)
                             </div>
                         </dd>
 
                     </dl>
                 }
                 else {
-                    <h3 style="color:red">Cet article n'existe pas!</h3>
-                    <p>Ajouter l'article: @Html.ActionLink("Ajouter", "ajouter", "home", new { Titre = Model.Titre }, null)</p>
+                    <h3 style="color:red">@nexistepas</h3>
+                    <p>@ajouterart @Html.ActionLink(@ajouter, "ajouter", "home", new { Titre = Model.Titre }, null)</p>
                 }
             }
             catch (NullReferenceException e) { }
@@ -99,10 +140,10 @@
     <p>
         @try {
             if(User.Identity.IsAuthenticated) { 
-        @Html.ActionLink("Modifier", "modifier", new { Titre = Model.Titre }, null) }
+        @Html.ActionLink(@modifier, "modifier", new { Titre = Model.Titre }, null) }
         }
         catch { } ||
-        @Html.ActionLink("Accueil", "index", "home") ||
+        @Html.ActionLink(@accueil, "index", "home") ||
     </p>
           
 </body>

@@ -118,36 +118,36 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accueil" xml:space="preserve">
-    <value>Home</value>
+    <value>Recepción</value>
   </data>
   <data name="Contenu" xml:space="preserve">
-    <value>Content</value>
+    <value>Contenido</value>
   </data>
   <data name="Courriel" xml:space="preserve">
-    <value>Email</value>
+    <value>Correo electrónico</value>
   </data>
   <data name="DateModification" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Fecha de modificación</value>
   </data>
   <data name="IdContributeur" xml:space="preserve">
-    <value>Contributor's Id</value>
+    <value>Id del colaborador</value>
   </data>
   <data name="Langue" xml:space="preserve">
-    <value>Language</value>
+    <value>Lengua</value>
   </data>
   <data name="MDP" xml:space="preserve">
-    <value>Password</value>
+    <value>Contraseña</value>
   </data>
   <data name="NomFamille" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Apellido</value>
   </data>
   <data name="Prenom" xml:space="preserve">
-    <value>First Name</value>
+    <value>Nombre de pila</value>
   </data>
   <data name="Revision" xml:space="preserve">
-    <value>Revision</value>
+    <value>Revisión</value>
   </data>
   <data name="Titre" xml:space="preserve">
-    <value>Title</value>
+    <value>Título</value>
   </data>
 </root>

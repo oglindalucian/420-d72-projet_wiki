@@ -114,17 +114,15 @@
     <Compile Include="Models\Views\UtilisateurProfil.cs" />
     <Compile Include="Models\Views\UtilisateursConnexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ressource\ResourceView.Designer.cs" />
-    <Compile Include="Ressource\ResourceView.en.Designer.cs" />
     <Compile Include="Ressource\ResourceView.en1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceView.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="Ressource\ResourceView.fr.Designer.cs">
+    <Compile Include="Ressource\ResourceView.es.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResourceView.fr.resx</DependentUpon>
+      <DependentUpon>ResourceView.es.resx</DependentUpon>
     </Compile>
     <Compile Include="Ressource\ResourceView1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -164,9 +162,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceView.en1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ressource\ResourceView.fr.resx">
+    <EmbeddedResource Include="Ressource\ResourceView.es.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceView.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>ResourceView.es.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressource\ResourceView.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

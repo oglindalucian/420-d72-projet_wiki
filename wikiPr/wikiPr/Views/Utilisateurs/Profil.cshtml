@@ -1,8 +1,42 @@
 ﻿@model wikiPr.Models.Utilisateur
+@using wikiPr.Models
 
 @{
     ViewBag.Title = "Profil";
     Layout = "~/Views/Shared/Layout.cshtml";
+
+    string str = "";
+    string francais = "français";
+    string anglais = "anglais";
+    string espagnol = "espagnol";
+    string save = "Sauvegarder";
+    string accueil = "Accueil";
+    string mmp = "Modifier le mot de passe";
+
+    try {
+        str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+        Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+    }
+    catch { str = "fr"; }
+
+    if (str.IndexOf("en") != -1) {
+        francais = "French";
+        anglais = "English";
+        espagnol = "Spanish";
+        save = "Save";
+        accueil = "Home";
+        mmp = "Change password";
+    }
+
+    if (str.IndexOf("es") != -1) {
+        francais = "francés";
+        anglais = "inglés";
+        espagnol = "español";
+        save = "Guardar";
+        accueil = "Recepción";
+        mmp = "Cambiar contraseña";
+    }
 }
 
 <h2>Profil</h2>
@@ -58,9 +92,9 @@
                 @*@Html.EditorFor(model => model.Langue, new { htmlAttributes = new { @class = "form-control" } })*@
                
                 @Html.DropDownList("Langue", new List<SelectListItem> {
-                new SelectListItem {Text="francais", Value="fr", Selected=true},
-                new SelectListItem {Text="espagnol", Value="es"},
-                new SelectListItem {Text="anglais", Value="en"} })
+                new SelectListItem {Text=@francais, Value="fr", Selected=true},
+                new SelectListItem {Text=@espagnol, Value="es"},
+                new SelectListItem {Text=@anglais, Value="en"} })
                 
                  @Html.ValidationMessageFor(model => model.Langue, "", new { @class = "text-danger" })
             </div>
@@ -68,13 +102,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Sauvegarder" class="btn btn-default" />
+                <input type="submit" value="@save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Accueil", "index", "home") ||
-    @Html.ActionLink("Modifier le mot de passe", "ModifierMdP", "Utilisateurs")
+    @Html.ActionLink(@accueil, "index", "home") ||
+    @Html.ActionLink(@mmp, "ModifierMdP", "Utilisateurs")
 </div>

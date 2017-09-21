@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using wikiPr.Models;
 using wikiPr.Models.Views;
+using wikiPr.Ressource;
 
 namespace wikiPr.Controllers
 {
