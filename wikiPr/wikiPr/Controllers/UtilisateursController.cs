@@ -175,8 +175,11 @@ namespace wikiPr.Controllers
 
         [HttpPost]
         public ActionResult Inscription(Utilisateur u) {
-            Utilisateurs.Add(u);
-            return RedirectToAction("index", "home");
+            if (ModelState.IsValid) { 
+                Utilisateurs.Add(u);
+                return RedirectToAction("index", "home");
+            }
+            return View();
         }
 
         //public ActionResult Profil() {
@@ -210,10 +213,12 @@ namespace wikiPr.Controllers
         //    return RedirectToAction("Index", "home");
         //}
 
-        public ActionResult Profil() {
+        public ActionResult Profil() { 
             string nom = User.Identity.Name;
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            UtilisateurProfil up = new UtilisateurProfil(u);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+           
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
 
             if (str.IndexOf("fr") != -1) {
@@ -228,22 +233,30 @@ namespace wikiPr.Controllers
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
-            return View(Utilisateurs.FindByCourriel(nom));
+            return View(up);
 
         }
 
         [HttpPost]
-        public ActionResult Profil(Utilisateur u) {
-            Utilisateurs.Update(u);
-            return RedirectToAction("Index", "home");
-           // return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
+        public ActionResult Profil(UtilisateurProfil up) {
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name); 
+            if (ModelState.IsValid) {
+               Utilisateurs.Ajour(u, up);//
+               return RedirectToAction("index", "home");
+           }
+           
+           return View();
+          
+            // return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
         }
 
         public ActionResult ModifierMdP() {
+            
             string courriel = User.Identity.Name;
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            UtilisateurMP ump = new UtilisateurMP();
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];            
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
 
             if (str.IndexOf("fr") != -1) {
@@ -259,21 +272,38 @@ namespace wikiPr.Controllers
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
 
-            ViewBag.Passwd = Utilisateurs.ancienMp(u); 
-
-            return View(u);
+            // ViewBag.Passwd = u.MDP; 
+           
+            return View(ump);
         }
 
         [HttpPost]
-        public ActionResult ModifierMdP(Utilisateur u) {
-            //string courriel = u.Courriel;
-            //string motAncien = u.MDP;
-            //UtilisateurMP ump = new UtilisateurMP(u.Courriel, u.MDP);
-            //string motNouveau = ump.MDP2;
-            //Utilisateurs.Update(courriel, motAncien, motNouveau);
-            Utilisateurs.updates(u);
-            return RedirectToAction("Index", "home");
-            //return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
+        public ActionResult ModifierMdP(UtilisateurMP ump) {
+            string er = "";         
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+
+            if (str.IndexOf("fr") != -1) {
+                er = "Le mot de passe fourni est incorrect.";
+
+            }
+            if (str.IndexOf("en") != -1) {
+                er = "Wrong password.";
+
+            }
+            else {
+
+                er = "Contraseña incorrecta.";
+            }
+            if (Utilisateurs.hacherMot(ump.MDP1).Trim() == u.MDP.Trim()) {
+                ViewBag.error = "";
+                if (ModelState.IsValid) {
+                    Utilisateurs.Ajour(u, ump);
+                    return RedirectToAction("Index", "home");
+                }               
+            }
+            else { ViewBag.error = er; }
+            return View();
         }
 
     }

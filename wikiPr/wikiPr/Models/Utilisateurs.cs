@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using wikiPr.Models.Views;
 
 namespace wikiPr.Models {
 
@@ -69,6 +70,68 @@ namespace wikiPr.Models {
 
                 string requete = "UPDATE Utilisateurs SET Prenom = '" + u.Prenom + "', NomFamille = '"
                     + u.NomFamille + "', Langue = '" + u.Langue + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+
+                SqlCommand cmd = new SqlCommand(requete, connexion);
+                cmd.CommandType = System.Data.CommandType.Text;
+                try {
+                    connexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception e) {
+                    string Message = e.Message;
+                    return false;
+                }
+                finally {
+                    connexion.Close();
+                }
+
+            }
+        }
+
+        public static bool Ajour(Utilisateur u, UtilisateurProfil up) {
+            using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
+                //byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+                //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+                //string hashString = BitConverter.ToString(hash);
+
+                string requete = "UPDATE Utilisateurs SET Prenom = '" + up.Prenom + "', NomFamille = '"
+                    + up.NomFamille + "', Langue = '" + up.Langue + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+
+                SqlCommand cmd = new SqlCommand(requete, connexion);
+                cmd.CommandType = System.Data.CommandType.Text;
+                try {
+                    connexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception e) {
+                    string Message = e.Message;
+                    return false;
+                }
+                finally {
+                    connexion.Close();
+                }
+
+            }
+        }
+
+        public static string hacherMot(string s) {
+            byte[] hashPassword = new UTF8Encoding().GetBytes(s);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+            string hashString = BitConverter.ToString(hash);
+            return hashString;
+        }
+
+        public static bool Ajour(Utilisateur u, UtilisateurMP ump) {
+            using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
+                byte[] hashPassword = new UTF8Encoding().GetBytes(ump.MDP2);
+                byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+                string hashString = BitConverter.ToString(hash);
+
+                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;

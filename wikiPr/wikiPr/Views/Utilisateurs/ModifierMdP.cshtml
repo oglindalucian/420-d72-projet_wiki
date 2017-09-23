@@ -1,13 +1,5 @@
-﻿@model wikiPr.Models.Utilisateur
+﻿@model wikiPr.Models.Views.UtilisateurMP
 @using wikiPr.Models
-@*@using System.Data;
-@using System.Data.SqlClient;
-@using System.Security.Cryptography;
-@using System.Text;
-@using System.Configuration;*@
-
-
-
 @{
     ViewBag.Title = "ModifierMdP";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -39,58 +31,39 @@
         mdp = "Nueva contraseña";
         ancien = "Contraseña anterior";
         er = "Contraseña incorrecta";
-    }    
-
-    
+    }
+   
 }
 
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-       
+        
+        <span style="color:red;">@ViewBag.error</span>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
-       
-        @Html.Label(@ancien) <br />
-        <input type="password" id="ancien" />  @*type="password"  onmouseout="verifier()"*@
-        @*<input type="button" value="x" onclick="verifier()" />*@      
-
-
-
         <div class="form-group">
-          
-            @Html.Label(@mdp)
+           @Html.Label(@ancien)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MDP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MDP, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MDP1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MDP1, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div id="viewbag" >@ViewBag.Passwd</div>   @*ViewBag.Passwd*@ 
-        <div id="err" style="visibility: hidden;" >@er</div>
-        <div id="er"></div>
-        <script>
-            function verifier() {
-                var y = document.getElementById("ancien").value;
-                var x = document.getElementById("viewbag").firstChild.nodeValue;                
-                var e = document.getElementById("err").firstChild.nodeValue;
-               if (x!==y) {
-                    document.getElementById("er").innerHTML = e;
-                    var z = document.getElementById("envoi");
-                    z.style.visibility='hidden';
-                }
-               // document.getElementById("er").innerHTML = y;
-            }
-        </script>
-
+        <div class="form-group">
+           @Html.Label(@mdp)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MDP2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MDP2, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <div id="envoi"><input type="submit" value="@save" class="btn btn-default" /></div>
+                <input type="submit" value="@save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -99,42 +72,3 @@
 <div>
     @Html.ActionLink(@accueil, "Index", "home")
 </div>
-
-@*@{ 
-        // var motCode = Model.MDP;
-
-    public string ancienMp() {
-        byte[] hashPassword = new UTF8Encoding().GetBytes(Model.MDP);
-        byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-        string hashString = BitConverter.ToString(hash);
-        return hashString;
-
-        //string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-        //string requete = "SELECT MDP FROM Utilisateurs WHERE Id = " + Model.Id;
-
-        //SqlConnection connexion = new SqlConnection(chConnexion);
-        //SqlCommand commande = new SqlCommand(requete, connexion);
-        //commande.CommandType = System.Data.CommandType.Text;
-        //try {
-        //    connexion.Open();
-        //    SqlDataReader dr = commande.ExecuteReader();
-        //    dr.Read();
-        //    string s = (string)dr["MDP"];
-
-
-
-        //    return s;
-        //}
-        //catch (Exception e) {
-        //    string Message = e.Message;
-        //}
-        //finally {
-        //    connexion.Close();
-        //}
-        //return null;
-    }
-
-    // string motAncien = ancienMp();
-} *@
-
-

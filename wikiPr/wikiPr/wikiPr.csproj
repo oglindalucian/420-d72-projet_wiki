@@ -147,10 +147,10 @@
     <Content Include="Views\home\ViewListe.cshtml" />
     <Content Include="Views\home\Appercu.cshtml" />
     <Content Include="Views\home\Apercu.cshtml" />
-    <Content Include="Views\Utilisateurs\Inscription.cshtml" />
     <Content Include="Views\Utilisateurs\Connexion.cshtml" />
-    <Content Include="Views\Utilisateurs\Profil.cshtml" />
     <Content Include="Views\home\ViewLang.cshtml" />
+    <Content Include="Views\Utilisateurs\Inscription.cshtml" />
+    <Content Include="Views\Utilisateurs\Profil.cshtml" />
     <Content Include="Views\Utilisateurs\ModifierMdP.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

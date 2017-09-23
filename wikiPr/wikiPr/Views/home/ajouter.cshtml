@@ -8,6 +8,7 @@
     string annuler = "Annuler l'ajout";
     string titre = "Titre";
     string contenu = "Contenu";
+    string appercu = "Aperçu de l'article";
 
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
@@ -21,12 +22,15 @@
         annuler = "Undo add article";
         titre = "Title";
         contenu = "Content";
+        appercu = "Preview";
+
     }
     if (str.IndexOf("es") != -1) {
         creer = "Crear artículo";
         annuler = "Deshacer añadir artículo";
         titre = "Título";
         contenu = "Contenido";
+        appercu = "Vista previa del artículo";
     }
 
 }
@@ -40,7 +44,8 @@
     <script src="~/ckeditor/ckeditor.js"></script>
     <script>
       function copiertexte() {
-         var x = document.getElementById("acopier").firstChild.nodeValue;
+          //var x = document.getElementById("acopier").firstChild.nodeValue;
+          var x = document.getElementsByName("acopier")[0].firstChild.nodeValue;
          // var x = document.getElementsByClassName("ckeditor")[0].firstChild.nodeValue;
          // var x = document.getElementsByTagName("textarea")[0].innerHTML;
         document.getElementById("apercu_art").innerHTML = x;
@@ -67,7 +72,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>Article</h4>
+           
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -86,7 +91,7 @@
                     @Html.Label(@contenu)<br/>
                     @*<div class="col-md-10">*@
                        
-                        @Html.TextAreaFor(model => model.Contenu,  new { @class = "ckeditor", @id = "acopier" })
+                        @Html.TextAreaFor(model => model.Contenu,  new { @class = "ckeditor", @id = "acopier", @name = "acopier" })
             
                          
 
@@ -109,7 +114,7 @@
     </div>
     <br />
     <div>
-        <button onclick="copiertexte()">Apperçu de l'article</button> 
+        <button onclick="copiertexte()">@appercu</button> 
         @*<input type="button" value="Apperçu de l'article" onclick="window.open(@Html.Action("Apercu"))" />*@ @*???*@     
        @*@{ 
            Apercu ap = new Apercu(Model.Contenu);

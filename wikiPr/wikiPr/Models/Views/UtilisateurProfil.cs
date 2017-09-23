@@ -15,6 +15,12 @@ namespace wikiPr.Models.Views {
         [Required(ErrorMessage = "Choisissez la langue")]
         public string Langue { get; set; }
 
-        
+        public UtilisateurProfil (Utilisateur u) {
+            this.Prenom = u.Prenom;
+            this.NomFamille = u.NomFamille;
+            this.Langue = u.Langue;
+        }
+
+        public UtilisateurProfil() { }
     }
 }

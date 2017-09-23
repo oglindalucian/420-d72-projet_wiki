@@ -15,25 +15,7 @@ namespace wikiPr.Controllers
         // GET: home
         string str;
 
-        //public Thread Language() {
-        //    str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-        //    Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-        //    if (u != null) str = u.Langue;
-
-        //    if (str.IndexOf("fr") != -1) {
-        //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-        //    }
-        //    if (str.IndexOf("en") != -1) {
-        //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-        //    }
-        //    else {
-
-        //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-        //    }
-        //}
-
+       
         
 
         public ActionResult Index() {
