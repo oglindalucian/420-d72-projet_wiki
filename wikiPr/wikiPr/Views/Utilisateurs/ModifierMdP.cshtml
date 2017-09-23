@@ -1,5 +1,12 @@
 ﻿@model wikiPr.Models.Utilisateur
 @using wikiPr.Models
+@*@using System.Data;
+@using System.Data.SqlClient;
+@using System.Security.Cryptography;
+@using System.Text;
+@using System.Configuration;*@
+
+
 
 @{
     ViewBag.Title = "ModifierMdP";
@@ -8,6 +15,9 @@
     string str = "";
     string save = "Sauvegarder";
     string accueil = "Accueil";
+    string mdp = "Mot de passe nouveau";
+    string ancien = "Mot de passe ancien";
+    string er = "Mot de passe incorrect";
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
         Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
@@ -18,70 +28,69 @@
     if (str.IndexOf("en") != -1) {
         save = "Save";
         accueil = "Home";
+        mdp = "New password";
+        ancien = "Old password";
+        er = "Wrong password";
     }
 
     if (str.IndexOf("es") != -1) {
         save = "Guardar";
         accueil = "Recepción";
-    }
+        mdp = "Nueva contraseña";
+        ancien = "Contraseña anterior";
+        er = "Contraseña incorrecta";
+    }    
+
+    
 }
 
-<h2>ModifierMdP</h2>
 
-@using (Html.BeginForm())
-{
+
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Utilisateur</h4>
-        <hr />
+       
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Prenom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+       
+        @Html.Label(@ancien) <br />
+        <input type="password" id="ancien" />  @*type="password"  onmouseout="verifier()"*@
+        @*<input type="button" value="x" onclick="verifier()" />*@      
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.NomFamille, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NomFamille, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NomFamille, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Courriel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Courriel, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Courriel, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
-        <div class="form-group">
-            @*@Html.LabelFor(model => model.MDP, htmlAttributes: new { @class = "control-label col-md-2" })*@
-            @wikiPr.Ressource.ResourceView.MDP
+          
+            @Html.Label(@mdp)
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MDP, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.MDP, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.Langue, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Langue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Langue, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+        <div id="viewbag" >@ViewBag.Passwd</div>   @*ViewBag.Passwd*@ 
+        <div id="err" style="visibility: hidden;" >@er</div>
+        <div id="er"></div>
+        <script>
+            function verifier() {
+                var y = document.getElementById("ancien").value;
+                var x = document.getElementById("viewbag").firstChild.nodeValue;                
+                var e = document.getElementById("err").firstChild.nodeValue;
+               if (x!==y) {
+                    document.getElementById("er").innerHTML = e;
+                    var z = document.getElementById("envoi");
+                    z.style.visibility='hidden';
+                }
+               // document.getElementById("er").innerHTML = y;
+            }
+        </script>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="@save" class="btn btn-default" />
+                <div id="envoi"><input type="submit" value="@save" class="btn btn-default" /></div>
             </div>
         </div>
     </div>
@@ -90,3 +99,42 @@
 <div>
     @Html.ActionLink(@accueil, "Index", "home")
 </div>
+
+@*@{ 
+        // var motCode = Model.MDP;
+
+    public string ancienMp() {
+        byte[] hashPassword = new UTF8Encoding().GetBytes(Model.MDP);
+        byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+        string hashString = BitConverter.ToString(hash);
+        return hashString;
+
+        //string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
+        //string requete = "SELECT MDP FROM Utilisateurs WHERE Id = " + Model.Id;
+
+        //SqlConnection connexion = new SqlConnection(chConnexion);
+        //SqlCommand commande = new SqlCommand(requete, connexion);
+        //commande.CommandType = System.Data.CommandType.Text;
+        //try {
+        //    connexion.Open();
+        //    SqlDataReader dr = commande.ExecuteReader();
+        //    dr.Read();
+        //    string s = (string)dr["MDP"];
+
+
+
+        //    return s;
+        //}
+        //catch (Exception e) {
+        //    string Message = e.Message;
+        //}
+        //finally {
+        //    connexion.Close();
+        //}
+        //return null;
+    }
+
+    // string motAncien = ancienMp();
+} *@
+
+

@@ -1,4 +1,6 @@
-﻿@using wikiPr.Models
+﻿@*@model wikiPr.Models.Language*@
+@*@model wikiPr.Models.Utilisateur*@
+@using wikiPr.Models
 
 @{ 
     string str = "";
@@ -10,12 +12,28 @@
     string profil = "Profil";
     string deconnexion = "Déconnexion";
     string bonjour = "Bonjour";
-
+    string langue = "Langue";
+    string francais = "Francais";
+    string anglais = "Anglais";
+    string espagnol = "Espagnol";
+    // string lang = Language.language;
 
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
         Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
         if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+        //else if (Request.Form["langue"]=="fr") { str = "fr"; }
+        //else if (Request.Form["langue"] == "en") { str = "en"; }
+        //else if (Request.Form["langue"] == "es") { str = "es"; }
+        //if (fr.isSelected)
+        // else if (lg != null) { str = lg; }
+        //   if (lang!=null) { str = lang; }
+        if (!User.Identity.IsAuthenticated) {
+            Utilisateur ut = new Utilisateur(-1);
+            string l = ut.Langue;
+            if (l != "" && l != null) { str = l; }
+
+        }
     }
     catch { str = "fr"; }
 
@@ -28,6 +46,10 @@
         profil = "Profil";
         deconnexion = "Déconnexion";
         bonjour = "Bonjour";
+        francais = "Francais";
+        anglais = "Anglais";
+        espagnol = "Espagnol";
+        langue = "Langue";
     }
 
     if (str.IndexOf("en") != -1) {
@@ -39,6 +61,10 @@
         profil = "Profile";
         deconnexion = "Log out";
         bonjour = "Hello";
+        francais = "French";
+        anglais = "English";
+        espagnol = "Spanish";
+        langue = "Language";
     }
 
     if (str.IndexOf("es") != -1) {
@@ -50,6 +76,10 @@
         profil = "Perfil";
         deconnexion = "Cerrar sesión";
         bonjour = "Hola";
+        francais = "Francés";
+        anglais = "Inglés";
+        espagnol = "Español";
+        langue = "Lengua";
     }
 }
 
@@ -63,6 +93,36 @@
 </div>
 <div class="btn_apropos">
     <a class="btn" href="/home/apropos">@apropos</a>
+</div>
+<div id="btn_langue">
+    
+        @*<select id="lang">
+            <option value="" selected>@langue</option>
+            <option value="fr" name="fr">@francais</option>
+            <option value="en" name="en">@anglais</option>
+            <option value="es" name="es">@espagnol</option>
+        </select>
+
+    <script>
+        var x = document.getElementById("lang");
+        var lg = x.options[x.selectedIndex].value;       
+    </script>*@
+
+    @*<form action="">
+        @Html.DropDownList("Langue", new List<SelectListItem> {
+                new SelectListItem {Text=@langue, Value="", Selected=true},
+                new SelectListItem {Text=@francais, Value="fr"},
+                new SelectListItem {Text=@espagnol, Value="es"},
+                new SelectListItem {Text=@anglais, Value="en"} })
+        <input type="submit" value="go" />
+    </form>*@  
+    
+    @*@Html.ActionLink(@francais, "LangFr", "home") 
+    @Html.ActionLink(@anglais, "LangEn", "home")
+    @Html.ActionLink(@espagnol, "LangEs", "home")*@
+
+   @Html.Action("ViewLang", "home") 
+       
 </div>
 @if (!User.Identity.IsAuthenticated) {
     <div class="inscription">

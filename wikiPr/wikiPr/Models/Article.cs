@@ -11,20 +11,25 @@ namespace wikiPr.Models {
         //   [Unique(ErrorMessage = "This already exist !!")]
         //   [Remote("verifierTitre", "home", ErrorMessage = "Titre Already Exist.")]
 
-        [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
+       // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
+        [Display(Name = "Titre")]
         public string Titre { get; set; }
 
-        [Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
+        //[Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Contenu de l'article")]
         public string Contenu { get; set; }
 
-        [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
+       // [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Dernière date de modification")]
         public DateTime DateModification { get; set; }
 
-        [Display(Name = "Révision", ResourceType = typeof(ResourceView))]
+        //[Display(Name = "Révision", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Révision")]
         public int Revision { get; set; }
 
-        [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
+       // [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
+        [Display(Name = "Id du contributeur")]
         public int IdContributeur { get; set; }
 
         public Article() {}

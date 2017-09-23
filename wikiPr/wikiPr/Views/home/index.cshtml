@@ -20,6 +20,8 @@
         string bienvenue = "Bienvenus/bienvenues sur notre site!";
         string auna = "Ajouter un nouvel article";
         string str = "";
+        string titre = "Titre";
+        string date = "Dernière date de modification";
 
         try {
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
@@ -31,10 +33,14 @@
         if (str.IndexOf("en") != -1) {
             bienvenue = "Welcome to our website!";
             auna = "Add a new article";
+            titre = "Title";
+            date = "Latest modification date";
         }
         if (str.IndexOf("es") != -1) {
             bienvenue = "Bienvenido a nuestro sitio web!";
             auna = "Añadir un nuevo artículo";
+            titre = "Título";
+            date = "Última fecha de modificación";
         }
      }
             
@@ -48,12 +54,14 @@
                 <tr>
                     <th>
                         @*@Html.DisplayNameFor(model => model.Titre)*@
-                        @wikiPr.Ressource.ResourceView.Titre
+                        @*@wikiPr.Ressource.ResourceView.Titre*@
+                        @Html.Label(@titre)
                     </th>
 
                     <th>
                         @*@Html.DisplayNameFor(model => model.DateModification)*@
-                        @wikiPr.Ressource.ResourceView.DateModification
+                        @*@wikiPr.Ressource.ResourceView.DateModification*@
+                        @Html.Label(@date)
                     </th>
 
                     <th></th>
@@ -117,8 +125,47 @@
     }
 
    
-    <input type="text" readonly="readonly" value="@titrealire" />&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text"  value="@titrealire" id="texte" />&nbsp;&nbsp;&nbsp;&nbsp;  @*readonly="readonly"*@
     <input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />
+  
+      @{
+        string lien = "/home/ajouter?Titre=";
+        foreach (string t in listedestitres) {
+            if (t == titrealire) {
+                lien = "/home/afficher?Titre=";
+                @*<input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />*@
+            break;
+        }
+    }
+    <script>
+        function getText2() {
+            var text = @lien;
+            var text2 = getText();
+            var text3 = text.concat(text2);
+            return text3;
+        }       
+    </script>
+    @*<script>
+        function getText3() {
+            var text = getText2();
+            var text1 = "'";
+            var texte = text1.concat(text, "'");
+            return texte;
+        }
+    </script>*@
+
+        @*<input type="submit" value="Lire" onclick="window.location =  '@lien' + getText();" />*@
+    
+    }
+    <script>
+        function getText() {
+            //var text1 = "'/home/afficher?Titre=";  @*@lien*@
+            var text2 = document.getElementById("texte").firstChild.nodeValue;
+            var text1 = "'";
+            var text = text1.concat(text2, text1);
+            return text;
+        }
+    </script>
     <br/><br/><br />
     @Html.ActionLink(@auna, "ajouter")
 

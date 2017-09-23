@@ -89,6 +89,34 @@ namespace wikiPr.Models {
             }
         }
 
+        public static bool updatelangue(Utilisateur u) {
+            using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
+                //byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+                //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+                //string hashString = BitConverter.ToString(hash);
+
+                string requete = "UPDATE Utilisateurs SET Langue = '" + u.Langue
+                     + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+
+                SqlCommand cmd = new SqlCommand(requete, connexion);
+                cmd.CommandType = System.Data.CommandType.Text;
+                try {
+                    connexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+
+                }
+                catch (Exception e) {
+                    string Message = e.Message;
+                    return false;
+                }
+                finally {
+                    connexion.Close();
+                }
+
+            }
+        }
+
         //public static bool update(Utilisateur u) {
         //    using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
         //        byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
@@ -468,6 +496,36 @@ namespace wikiPr.Models {
         //        connexion.Close();
         //    }
         //}
+
+        public static string ancienMp(Utilisateur u) {
+            byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+            string hashString = BitConverter.ToString(hash);
+            return hashString;
+            //string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
+            //string requete = "SELECT MDP FROM Utilisateurs WHERE Id = " + u.Id;
+
+            //SqlConnection connexion = new SqlConnection(chConnexion);
+            //SqlCommand commande = new SqlCommand(requete, connexion);
+            //commande.CommandType = System.Data.CommandType.Text;
+            //try {
+            //    connexion.Open();
+            //    SqlDataReader dr = commande.ExecuteReader();
+            //    dr.Read();
+            //    string s = (string)dr["MDP"];
+
+
+
+            //    return s;
+            //}
+            //catch (Exception e) {
+            //    string Message = e.Message;
+            //}
+            //finally {
+            //    connexion.Close();
+            //}
+            //return null;
+        }
 
         private static string ConnectionString {
         get { return ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString; }

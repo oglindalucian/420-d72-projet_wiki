@@ -106,6 +106,7 @@
     </Compile>
     <Compile Include="Models\Apercu.cs" />
     <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\PasswordHash.cs" />
     <Compile Include="Models\Utilisateur.cs" />
     <Compile Include="Models\Utilisateurs.cs" />
@@ -149,6 +150,7 @@
     <Content Include="Views\Utilisateurs\Inscription.cshtml" />
     <Content Include="Views\Utilisateurs\Connexion.cshtml" />
     <Content Include="Views\Utilisateurs\Profil.cshtml" />
+    <Content Include="Views\home\ViewLang.cshtml" />
     <Content Include="Views\Utilisateurs\ModifierMdP.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

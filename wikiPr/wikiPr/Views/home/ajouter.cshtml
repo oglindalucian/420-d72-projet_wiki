@@ -6,6 +6,8 @@
     string str = "";
     string creer = "Créer article";
     string annuler = "Annuler l'ajout";
+    string titre = "Titre";
+    string contenu = "Contenu";
 
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
@@ -17,10 +19,14 @@
     if (str.IndexOf("en") != -1) {
         creer = "Create article";
         annuler = "Undo add article";
+        titre = "Title";
+        contenu = "Content";
     }
     if (str.IndexOf("es") != -1) {
         creer = "Crear artículo";
         annuler = "Deshacer añadir artículo";
+        titre = "Título";
+        contenu = "Contenido";
     }
 
 }
@@ -33,9 +39,10 @@
     <title>ajouter</title>
     <script src="~/ckeditor/ckeditor.js"></script>
     <script>
-                        function copiertexte() {
-        var x = document.getElementById("acopier").lastChild.firstChild.nodeValue;
-
+      function copiertexte() {
+         var x = document.getElementById("acopier").firstChild.nodeValue;
+         // var x = document.getElementsByClassName("ckeditor")[0].firstChild.nodeValue;
+         // var x = document.getElementsByTagName("textarea")[0].innerHTML;
         document.getElementById("apercu_art").innerHTML = x;
     }
     </script>
@@ -65,27 +72,29 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @*@Html.LabelFor(model => model.Titre, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                @wikiPr.Ressource.ResourceView.Titre
+                @*@wikiPr.Ressource.ResourceView.Titre*@
+                @Html.Label(@titre)
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Titre, new { htmlAttributes = new { @class = "form-control", @value = @ViewBag.letitre } })
                     @Html.ValidationMessageFor(model => model.Titre, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div id="unu">
-                <div class="form-group">
+           
+                @*<div class="form-group">*@
                     @*@Html.LabelFor(model => model.Contenu, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                    @wikiPr.Ressource.ResourceView.Contenu
-                    <div class="col-md-10">
+                    @*@wikiPr.Ressource.ResourceView.Contenu*@
+                    @Html.Label(@contenu)<br/>
+                    @*<div class="col-md-10">*@
                        
                         @Html.TextAreaFor(model => model.Contenu,  new { @class = "ckeditor", @id = "acopier" })
-
+            
                          
 
                         @Html.ValidationMessageFor(model => model.Contenu, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-
+                    @*</div>*@
+                @*</div>*@
+            
+            
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
@@ -100,7 +109,7 @@
     </div>
     <br />
     <div>
-        @*<button onclick="copiertexte()">Apperçu de l'article</button>*@ 
+        <button onclick="copiertexte()">Apperçu de l'article</button> 
         @*<input type="button" value="Apperçu de l'article" onclick="window.open(@Html.Action("Apercu"))" />*@ @*???*@     
        @*@{ 
            Apercu ap = new Apercu(Model.Contenu);

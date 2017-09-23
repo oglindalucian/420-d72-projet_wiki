@@ -236,6 +236,7 @@ namespace wikiPr.Controllers
         public ActionResult Profil(Utilisateur u) {
             Utilisateurs.Update(u);
             return RedirectToAction("Index", "home");
+           // return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
         }
 
         public ActionResult ModifierMdP() {
@@ -258,8 +259,9 @@ namespace wikiPr.Controllers
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
 
+            ViewBag.Passwd = Utilisateurs.ancienMp(u); 
 
-            return View(Utilisateurs.FindByCourriel(courriel));
+            return View(u);
         }
 
         [HttpPost]
@@ -271,6 +273,7 @@ namespace wikiPr.Controllers
             //Utilisateurs.Update(courriel, motAncien, motNouveau);
             Utilisateurs.updates(u);
             return RedirectToAction("Index", "home");
+            //return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
         }
 
     }
