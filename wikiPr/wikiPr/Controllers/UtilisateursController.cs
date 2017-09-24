@@ -69,6 +69,23 @@ namespace wikiPr.Controllers
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
             return View();
         }
 
@@ -102,6 +119,23 @@ namespace wikiPr.Controllers
             else {
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
             }
             return View(up);
 
@@ -139,8 +173,25 @@ namespace wikiPr.Controllers
             else {
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }          
-           
+            }
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
+
             return View(ump);
         }
 
@@ -149,6 +200,23 @@ namespace wikiPr.Controllers
             string er = "";         
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            //string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                str = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = str;
+                if (str.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+                }
+                if (str.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (str.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
 
             if (str.IndexOf("fr") != -1) {
                 er = "Le mot de passe fourni est incorrect.";
@@ -158,10 +226,11 @@ namespace wikiPr.Controllers
                 er = "Wrong password.";
 
             }
-            else {
+            else if (str.IndexOf("es") != -1) {
 
                 er = "Contraseña incorrecta.";
             }
+            
             if (Utilisateurs.hacherMot(ump.MDP1).Trim() == u.MDP.Trim()) {
                 ViewBag.error = "";
                 if (ModelState.IsValid) {

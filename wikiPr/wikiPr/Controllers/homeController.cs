@@ -41,10 +41,23 @@ namespace wikiPr.Controllers
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-            }
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(cookie);
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-                return View(Article.lesArticles());
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
+
+
+            return View(Article.lesArticles());
         }
 
         [HttpPost]
@@ -65,28 +78,29 @@ namespace wikiPr.Controllers
 
 
 
-        //[ChildActionOnly()]
-        public ActionResult ViewLang() {
-            return PartialView();
-        }
+        ////[ChildActionOnly()]
+        //public ActionResult ViewLang() {
+        //    return PartialView();
+        //}
 
-        [HttpPost]
-        public ActionResult ViewLang(Utilisateur u) {
-            HttpCookie cookie = new HttpCookie("Cookie");
-            cookie.Value = Request.Form["lalang"];
-            this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+        //[HttpPost]
+        //public ActionResult ViewLang(Utilisateur u) {
+        //    HttpCookie cookie = new HttpCookie("Cookie");
+        //    cookie.Value = Request.Form["lalang"];
+        //    this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
 
-            //if (User.Identity.IsAuthenticated) {
-            //    Utilisateurs.updatelangue(u);
-            //}
-            //else {
-            //    string langue = Request.Form["lalang"];// Request.QueryString["lalang"];//Request.Form["lalang"];
-            //    if (!string.IsNullOrEmpty(langue)) {
-            //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(langue);
-            //    }
-            //}
-            return PartialView();
-        }
+        //    //if (User.Identity.IsAuthenticated) {
+        //    //    Utilisateurs.updatelangue(u);
+        //    //}
+        //    //else {
+        //    //    string langue = Request.Form["lalang"];// Request.QueryString["lalang"];//Request.Form["lalang"];
+        //    //    if (!string.IsNullOrEmpty(langue)) {
+        //    //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(langue);
+        //    //    }
+        //    //}
+        //    //return PartialView();
+        //    return RedirectToAction("index", "home");
+        //}
 
         //[HttpPost]
         //public ActionResult ViewLang(string lang) {
@@ -141,8 +155,25 @@ namespace wikiPr.Controllers
 
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            return View(a);
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
+
+                return View(a);
         }
 
         [Authorize]
@@ -166,7 +197,25 @@ namespace wikiPr.Controllers
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
 
-            if (titre == null) { return View(new Article()); }
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
+
+                if (titre == null) { return View(new Article()); }
             else return View(new Article(titre));
 
         }
@@ -181,6 +230,19 @@ namespace wikiPr.Controllers
             Article.Update(a, id);
             return RedirectToAction("afficher", new { Titre = a.Titre });
             }
+
+
+        public ActionResult ajouterApercu() {
+            ViewBag.apercu = Request.Form["acopier"];//?
+            string texte = ViewBag.apercu;
+            Article a = new Article("-1", texte);
+            //return RedirectToAction ("ajouter", "home", new {Conten
+            return View(a);
+        }
+
+        //    public ActionResult ajouterApercu() {
+
+        //}
 
         [Authorize]
         public ActionResult modifier(string titre) {
@@ -204,8 +266,26 @@ namespace wikiPr.Controllers
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
 
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            return View(Article.Find(titre));
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
+
+
+                return View(Article.Find(titre));
         }
 
         [HttpPost]
@@ -241,8 +321,26 @@ namespace wikiPr.Controllers
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
 
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
-            return View(a);
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
+
+
+                return View(a);
         }
 
         [HttpPost]
@@ -252,12 +350,39 @@ namespace wikiPr.Controllers
         }
 
         public ActionResult apropos() {
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                if (cookie.IndexOf("fr") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+                }
+                if (cookie.IndexOf("en") != -1) {
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+                }
+                else if (cookie.IndexOf("es") != -1) {
+
+                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+                }
+            }
             return View();
         }
 
         [ChildActionOnly()]
         public ActionResult ViewUp() {
             return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult ViewUp(string l) {
+            string langue = Request.Form["lalang"];
+            HttpCookie cookie = new HttpCookie("Cookie");
+            cookie.Value = langue;
+            this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
+            
+            return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
         }
 
         [ChildActionOnly()]

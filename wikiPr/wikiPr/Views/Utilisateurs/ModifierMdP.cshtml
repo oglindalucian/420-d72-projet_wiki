@@ -1,5 +1,8 @@
 ﻿@model wikiPr.Models.Views.UtilisateurMP
 @using wikiPr.Models
+@using System.Globalization;
+@using System.Linq;
+@using System.Threading;
 @{
     ViewBag.Title = "ModifierMdP";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -14,6 +17,21 @@
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
         Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
         if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+        if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
+
+
+        if (str.IndexOf("fr") != -1) {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+        }
+        if (str.IndexOf("en") != -1) {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+        }
+        else if (str.IndexOf("es") != -1) {
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+        }
     }
     catch { str = "fr"; }
 
@@ -32,7 +50,7 @@
         ancien = "Contraseña anterior";
         er = "Contraseña incorrecta";
     }
-   
+
 }
 
 

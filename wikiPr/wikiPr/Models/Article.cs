@@ -36,6 +36,11 @@ namespace wikiPr.Models {
             this.Titre = titre;
         }
 
+        public Article(string titre, string contenu) {
+            this.Titre = titre;
+            this.Contenu = contenu;
+        }
+
         public static List<Article> lesArticles() {
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);

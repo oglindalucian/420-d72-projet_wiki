@@ -1,6 +1,8 @@
-﻿@*@model wikiPr.Models.Language*@
-@*@model wikiPr.Models.Utilisateur*@
+﻿
 @using wikiPr.Models
+@using System.Globalization;
+@using System.Linq;
+@using System.Threading;
 
 @{ 
     string str = "";
@@ -16,24 +18,31 @@
     string francais = "Francais";
     string anglais = "Anglais";
     string espagnol = "Espagnol";
-    // string lang = Language.language;
+    string go = "Aller";
+   
 
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
         Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
         if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
-        //else if (Request.Form["langue"]=="fr") { str = "fr"; }
-        //else if (Request.Form["langue"] == "en") { str = "en"; }
-        //else if (Request.Form["langue"] == "es") { str = "es"; }
-        //if (fr.isSelected)
-        // else if (lg != null) { str = lg; }
-        //   if (lang!=null) { str = lang; }
-        if (!User.Identity.IsAuthenticated) {
-            Utilisateur ut = new Utilisateur(-1);
-            string l = ut.Langue;
-            if (l != "" && l != null) { str = l; }
+        
+        if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
+
+
+        if (str.IndexOf("fr") != -1) {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
         }
+        if (str.IndexOf("en") != -1) {
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+        }
+        else if (str.IndexOf("es") != -1) {
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+        }
+
+    
     }
     catch { str = "fr"; }
 
@@ -65,6 +74,7 @@
         anglais = "English";
         espagnol = "Spanish";
         langue = "Language";
+        go = "Go!";
     }
 
     if (str.IndexOf("es") != -1) {
@@ -80,6 +90,7 @@
         anglais = "Inglés";
         espagnol = "Español";
         langue = "Lengua";
+        go = "Ir!";
     }
 }
 
@@ -95,12 +106,23 @@
     <a class="btn" href="/home/apropos">@apropos</a>
 </div>
 <div id="btn_langue">
-    
-       
+    <form action="/home/ViewUp" method="post">
+        <select id="lalang" name="lalang">
+            <option selected>@langue</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
+        <input type="submit" value="GO!" name="choixLangue" />
+    </form> 
 
-   @Html.Action("ViewLang", "home") 
+  
        
 </div>
+
+
+
+
 @if (!User.Identity.IsAuthenticated) {
     <div class="inscription">
         <a href="/Utilisateurs/Inscription">@inscription</a>
