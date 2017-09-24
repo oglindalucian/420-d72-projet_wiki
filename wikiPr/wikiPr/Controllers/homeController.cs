@@ -47,6 +47,22 @@ namespace wikiPr.Controllers
                 return View(Article.lesArticles());
         }
 
+        [HttpPost]
+        public ActionResult Index (string s) {
+            string titre = Request.Form["texte"];
+            ViewBag.lesArticles = Article.lesArticles();
+            foreach (Article a in ViewBag.lesArticles) {
+                if (a.Titre == titre) {
+                    return RedirectToAction("afficher", "home", new { Titre = titre });
+                }
+            }       
+                
+            return RedirectToAction("ajouter", "home", new { Titre = titre });
+
+        }
+
+        
+
 
 
         //[ChildActionOnly()]

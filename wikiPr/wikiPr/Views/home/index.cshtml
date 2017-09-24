@@ -66,8 +66,7 @@
 
                     <th></th>
                 </tr>
-                @*<dd>@DemoCours.Ressource.ResourceView.Contenu</dd>
-                <dt>@Model.Contenu</dt>*@
+             
 
 
 
@@ -95,7 +94,7 @@
     </table>
 
     <div class="bienvenue">
-        @*Bienvenus/bienvenues sur notre site!*@
+       
         @bienvenue 
     </div>
 
@@ -124,59 +123,16 @@
             }
     }
 
-   
-    <input type="text" value="@titrealire" id="texte" name="texte"/>&nbsp;&nbsp;&nbsp;&nbsp;  @*readonly="readonly"*@
-    <input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />
-
+    <form action="/home/index" method="post">
+        <input type="text" value="@titrealire" id="texte" name="texte" />&nbsp;&nbsp;&nbsp;&nbsp;  @*readonly="readonly"*@
+        <input type="submit" value="Lire" />   @*onclick="window.location = '/home/afficher?Titre=@titrealire';"*@
+    </form>
 
   
-      @{
-        string lien = "/home/ajouter?Titre=";
-        foreach (string t in listedestitres) {
-            if (t == titrealire) {
-                lien = "/home/afficher?Titre=";
-                @*<input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />*@
-            break;
-        }
-    }
-    <script>
-        function getText2() {
-            var text = @lien;
-            var text2 = getText();
-            var text3 = text.concat(text2);
-            return text3;
-        }       
-    </script>
-    @*<script>
-        function getText3() {
-            var text = getText2();
-            var text1 = "'";
-            var texte = text1.concat(text, "'");
-            return texte;
-        }
-    </script>*@
-
-        @*<input type="submit" value="Lire" onclick="window.location =  '@lien' + getText();" />*@
-    
-    }
-    <script>
-        function getText() {
-            //var text1 = "'/home/afficher?Titre=";  @*@lien*@
-            var text2 = document.getElementById("texte").firstChild.nodeValue;
-            var text1 = "'";
-            var text = text1.concat(text2, text1);
-            return text;
-        }
-    </script>
+     
     <br/><br/><br />
     @Html.ActionLink(@auna, "ajouter")
 
-    @*"Ajouter un nouvel article"*@
-
-
-    
-
-
-
+   
 </body>
 </html>
