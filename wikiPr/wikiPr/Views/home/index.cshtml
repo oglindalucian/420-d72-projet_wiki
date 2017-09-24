@@ -125,8 +125,10 @@
     }
 
    
-    <input type="text" readonly="readonly" value="@titrealire" id="texte" />&nbsp;&nbsp;&nbsp;&nbsp;  @*readonly="readonly"*@
+    <input type="text" value="@titrealire" id="texte" name="texte"/>&nbsp;&nbsp;&nbsp;&nbsp;  @*readonly="readonly"*@
     <input type="submit" value="Lire" onclick="window.location = '/home/afficher?Titre=@titrealire';" />
+
+
   
       @{
         string lien = "/home/ajouter?Titre=";

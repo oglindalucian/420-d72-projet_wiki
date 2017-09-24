@@ -7,9 +7,7 @@ using wikiPr.Ressource;
 
 namespace wikiPr.Models {
     public class Article {
-        // [Uniqueness("Titre")]
-        //   [Unique(ErrorMessage = "This already exist !!")]
-        //   [Remote("verifierTitre", "home", ErrorMessage = "Titre Already Exist.")]
+       
 
        // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
@@ -115,24 +113,7 @@ namespace wikiPr.Models {
             return null;
         }
 
-        //public static void Update(Article a, int id) {
-
-
-        //    string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-        //    SqlConnection connexion = new SqlConnection(chConnexion);
-        //    string requete = "UPDATE Article SET Titre = '" + a.Titre +
-        //        "', DateModification = '" + DateTime.Now + "', Contenu = '" + a.Contenu + "', IdContributeur = " + id
-        //        + "' WHERE Titre = '" + a.Titre + "'";
-
-        //    SqlCommand commande = new SqlCommand(requete, connexion);
-        //    commande.CommandType = System.Data.CommandType.Text;
-        //    try {
-        //        connexion.Open();
-        //        commande.ExecuteNonQuery();
-        //        connexion.Close();
-        //    }
-        //    catch { }
-        //}
+       
 
         public static void Update(Article a, int id) {
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
@@ -165,26 +146,7 @@ namespace wikiPr.Models {
             catch { }
         }
 
-        //public class UniquenessAttribute : ValidationAttribute {
-        //    string attri { get; set; }
-        //    public UniquenessAttribute(string attri) {
-        //        this.attri = attri;
-        //    }
-
-        //    protected override ValidationResult IsValid(object value, ValidationContext validationContext) {
-        //        var property = validationContext.ObjectType.GetProperty(attri);
-        //        if (property == null) {
-        //            return new ValidationResult(
-        //                string.Format("Unknown property: {0}", attri)
-        //            );
-        //        }
-
-        //        if (attri == "Titre" && Find(value.ToString()) != null) {
-        //            return new ValidationResult(validationContext.DisplayName + " existe deja!");
-        //        }
-
-        //        return null;
-        //    }
-        //}
+       
+      
     }
 }

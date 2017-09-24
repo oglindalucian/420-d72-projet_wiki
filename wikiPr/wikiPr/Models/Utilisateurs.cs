@@ -13,28 +13,9 @@ namespace wikiPr.Models {
 
     public class Utilisateurs {
 
-        public static bool Add(Utilisateur u) { //bool
-                                                //using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-                                                //    connexion.Open();
+        public static bool Add(Utilisateur u) { 
 
-            //    //Création d'une commande
-            //    SqlCommand commande = new SqlCommand("AddUtilisateur", connexion);
-            //    commande.CommandType = CommandType.StoredProcedure;
-            //    commande.Parameters.Add("mdp", SqlDbType.NVarChar).SqlValue = u.MDP;
-            //    commande.Parameters.Add("prenom", SqlDbType.NVarChar).SqlValue = u.Prenom;
-            //    commande.Parameters.Add("nomFamille", SqlDbType.NVarChar).SqlValue = u.NomFamille;
-            //    commande.Parameters.Add("courriel", SqlDbType.NVarChar).SqlValue = u.Courriel;
-            //    commande.Parameters.Add("langue", SqlDbType.NVarChar).SqlValue = u.Langue;
-
-            //    try {
-            //        u.Id = Convert.ToInt32(commande.ExecuteScalar());
-            //    }
-            //    catch (Exception e) {
-            //        throw new Exception("Erreur d'ajout", e);
-            //    }
-            //}
-
-            //////////////
+           
 
             bool TEST = true;
             byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
@@ -42,7 +23,7 @@ namespace wikiPr.Models {
             string hashString = BitConverter.ToString(hash);
 
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-            string requete = //"INSERT INTO Utilisateurs (Nom, Courriel, Mot) VALUES ('" + u.Nom + "', '" + u.Courriel + "', '" + hashString + "')";
+            string requete = 
            "INSERT INTO Utilisateurs(MDP, Prenom, NomFamille, Courriel, Langue) VALUES ('" + hashString + "', '" + u.Prenom + "', '" + u.NomFamille +
            "', '" + u.Courriel + "', '" + u.Langue + "')";
             SqlConnection connexion = new SqlConnection(chConnexion);
@@ -64,12 +45,10 @@ namespace wikiPr.Models {
 
         public static bool Update(Utilisateur u) {
             using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-                //byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
-                //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-                //string hashString = BitConverter.ToString(hash);
+               
 
                 string requete = "UPDATE Utilisateurs SET Prenom = '" + u.Prenom + "', NomFamille = '"
-                    + u.NomFamille + "', Langue = '" + u.Langue + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+                    + u.NomFamille + "', Langue = '" + u.Langue + "' WHERE Id = " + u.Id;      
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -92,12 +71,10 @@ namespace wikiPr.Models {
 
         public static bool Ajour(Utilisateur u, UtilisateurProfil up) {
             using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-                //byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
-                //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-                //string hashString = BitConverter.ToString(hash);
+               
 
                 string requete = "UPDATE Utilisateurs SET Prenom = '" + up.Prenom + "', NomFamille = '"
-                    + up.NomFamille + "', Langue = '" + up.Langue + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+                    + up.NomFamille + "', Langue = '" + up.Langue + "' WHERE Id = " + u.Id;     
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -131,7 +108,7 @@ namespace wikiPr.Models {
                 byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 string hashString = BitConverter.ToString(hash);
 
-                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;      
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -154,12 +131,10 @@ namespace wikiPr.Models {
 
         public static bool updatelangue(Utilisateur u) {
             using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-                //byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
-                //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-                //string hashString = BitConverter.ToString(hash);
+               
 
                 string requete = "UPDATE Utilisateurs SET Langue = '" + u.Langue
-                     + "' WHERE Id = " + u.Id;     //Courriel = '" + u.Courriel + "'"; 
+                     + "' WHERE Id = " + u.Id;      
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -180,32 +155,7 @@ namespace wikiPr.Models {
             }
         }
 
-        //public static bool update(Utilisateur u) {
-        //    using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-        //        byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
-        //        byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-        //        string hashString = BitConverter.ToString(hash);
-
-        //        string requete = "UPDATE Utilisateurs SET MDP = '" + u.MDP + "' WHERE Courriel = '" + u.Courriel + "'";
-
-        //        SqlCommand cmd = new SqlCommand(requete, connexion);
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        try {
-        //            connexion.Open();
-        //            cmd.ExecuteNonQuery();
-        //            return true;
-
-        //        }
-        //        catch (Exception e) {
-        //            string Message = e.Message;
-        //            return false;
-        //        }
-        //        finally {
-        //            connexion.Close();
-        //        }
-
-        //    }
-        //}
+       
 
 
         public static bool updates(Utilisateur u) {
@@ -215,7 +165,7 @@ namespace wikiPr.Models {
                 byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 string hashString = BitConverter.ToString(hash);
 
-                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;    //Courriel = '" + u.Courriel + "'";
+                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;    
 
                 SqlCommand cmd = new SqlCommand(requete, cnx);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -241,51 +191,11 @@ namespace wikiPr.Models {
 
 
 
-        //Création d'une commande
-        //SqlCommand commande = new SqlCommand("UpdateUtilisateur", connexion);
-        //commande.CommandType = CommandType.StoredProcedure;
-        //commande.Parameters.Add("prenom", SqlDbType.NVarChar).SqlValue = u.Prenom;
-        //commande.Parameters.Add("nomFamille", SqlDbType.NVarChar).SqlValue = u.NomFamille;
-        ////  commande.Parameters.Add("courriel", SqlDbType.NVarChar).SqlValue = u.Courriel;
-        //commande.Parameters.Add("langue", SqlDbType.NVarChar).SqlValue = u.Langue;
-
-        //    try {
-        //        commande.ExecuteNonQuery();
-        //    }
-        //    catch (Exception e) {
-        //        throw new Exception("Erreur de modification", e);
-        //    }
-        //}
-        // }
-
-
-
-        //public static void Update(string courriel, string ancienMdP, string nouveauMdP) {
-        //    using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-        //        connexion.Open();
-
-        //        //Création d'une commande
-        //        SqlCommand commande = new SqlCommand("UpdateMotDePasse", connexion);
-        //        commande.CommandType = CommandType.StoredProcedure;
-        //        commande.Parameters.Add("courriel", SqlDbType.NVarChar).SqlValue = courriel;
-        //        commande.Parameters.Add("ancienMdp", SqlDbType.NVarChar).SqlValue = ancienMdP;
-        //        commande.Parameters.Add("nouveauMdp", SqlDbType.NVarChar).SqlValue = nouveauMdP;
-
-        //        try {
-        //            if (commande.ExecuteNonQuery() != 1)
-        //                throw new Exception("Erreur de modification");
-        //        }
-        //        catch (Exception e) {
-        //            throw new Exception("Erreur de modification", e);
-        //        }
-        //    }
-        //}
+       
 
         public void Remove(int id) {
             using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
                 connexion.Open();
-
-                //Création d'une commande
                 SqlCommand commande = new SqlCommand("DeleteUtilisateur", connexion);
                 commande.CommandType = CommandType.StoredProcedure;
                 commande.Parameters.Add("Id", SqlDbType.Int).SqlValue = id;
@@ -300,65 +210,10 @@ namespace wikiPr.Models {
 
         }
 
-        /*
-
-        string chConnexion = ConfigurationManager.ConnectionStrings["maCon"].ConnectionString;
-                    SqlConnection connexion = new SqlConnection(chConnexion);
-                    string requete = "SELECT * FROM Commentaire WHERE idCommentaire = " + id;
-                    SqlCommand commande = new SqlCommand(requete, connexion);
-                    commande.CommandType = System.Data.CommandType.Text;
-                    try
-                    {
-                        connexion.Open();
-                        SqlDataReader dr = commande.ExecuteReader();
-                        dr.Read();
-                        Commentaire c = new Commentaire
-                        {
-                            idCommentaire = (int)dr["idCommentaire"],
-                            auteur = (string)dr["auteur"],
-                            idArt = (int)dr["idArt"],
-                            datePublication = (DateTime)dr["datePublication"],
-                            contenu = (string)dr["contenu"]
-                        };
-
-                        return c;
-                    }
-                    catch (Exception e)
-                    {
-                        string Message = e.Message;
-                    }
-                    finally
-                    {
-                        connexion.Close();
-                    }
-                    return null;
-                }
-
-        */
+       
 
 
         public static Utilisateur FindByCourriel(string courriel) {
-            //Utilisateur u = null;
-            //using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
-            //    connexion.Open();
-
-            //    //Création d'une commande
-            //    SqlCommand commande = new SqlCommand("FindUtilisateurByCourriel", connexion);
-            //    commande.CommandType = CommandType.StoredProcedure;
-            //    commande.Parameters.Add("Courriel", SqlDbType.NVarChar).SqlValue = courriel;
-
-            //    //Traitement du DataReader
-            //    SqlDataReader dr = commande.ExecuteReader();
-            //    dr.Read();
-            //    u = ExtraireUtilisateur(dr);
-            //    dr.Close();
-            //}
-
-            //return u;
-
-
-            ///////
-
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
             string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" + courriel + "';";
@@ -409,7 +264,7 @@ namespace wikiPr.Models {
         return u;
     }
 
-    private static Utilisateur ExtraireUtilisateur(IDataReader dr) {//     IDataReader    SqlDataReader
+    private static Utilisateur ExtraireUtilisateur(IDataReader dr) {
         Utilisateur u = new Utilisateur();
         u.Id = (int)dr["Id"];
         u.Courriel = (string)dr["Courriel"];
@@ -421,9 +276,9 @@ namespace wikiPr.Models {
         return u;
     }
 
-        //now
+        
         public static bool Authentifie(string login, string passwd) {
-            //using (SqlConnection cnx = new SqlConnection(ConnectionString)) {
+           
             string cStr = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             using (SqlConnection cnx = new SqlConnection(cStr)) {
                 string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" + login + "'";
@@ -438,7 +293,7 @@ namespace wikiPr.Models {
                         return false;
                     }
                     dataReader.Read();
-                   //  string p = (string)dataReader["MDP"];
+                  
                     var encodedPasswordOnServer = (string)dataReader["MDP"];
 
                     byte[] encodedPassword = new UTF8Encoding().GetBytes(passwd);
@@ -447,11 +302,11 @@ namespace wikiPr.Models {
 
                     dataReader.Close();
                     return encodedPasswordSentToForm.Trim() == encodedPasswordOnServer.Trim();
-                   // return passwd.Trim() == p.Trim();
+                   
                 }
 
                 catch (Exception e) {
-                    // string msg = e.Message;
+                   
                     return false;
                 }
 
@@ -459,135 +314,13 @@ namespace wikiPr.Models {
                     cnx.Close();
                 }
             }
-        }
-
-
-        //public static bool Authentifie(string login, string passwd) {
-        //    string cStr =
-        //   ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-        //    using (SqlConnection cnx = new SqlConnection(cStr)) {
-        //        string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" +
-        //       login + "'";
-        //        SqlCommand cmd = new SqlCommand(requete, cnx);
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        try {
-        //            cnx.Open();
-        //            SqlDataReader dataReader = cmd.ExecuteReader();
-        //            if (!dataReader.HasRows) {
-        //                dataReader.Close();
-
-        //             return false;
-        //            }
-        //            dataReader.Read();
-        //            var encodedPasswordOnServer = (string)dataReader["MDP"];
-        //            byte[] encodedPassword = new UTF8Encoding().GetBytes(passwd);
-        //            byte[] hash =
-        //           ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
-        //            string encodedPasswordSentToForm =
-        //           BitConverter.ToString(hash);
-        //            dataReader.Close();
-        //            //return encodedPasswordSentToForm ==
-        //            //encodedPasswordOnServer.Trim();
-        //            return passwd.Trim() == encodedPasswordOnServer.Trim();
-        //        }
-        //        finally {
-        //            cnx.Close();
-        //        }
-        //    }
-        //}
-
-        //public static bool Authentifie(string login, string passwd) {
-        //    string cStr = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-        //    using (SqlConnection cnx = new SqlConnection(cStr)) {
-        //        string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" + login + "'";
-
-        //        SqlCommand cmd = new SqlCommand(requete, cnx);
-        //        cmd.CommandType = System.Data.CommandType.Text;
-        //        try {
-        //            cnx.Open();
-        //            SqlDataReader dataReader = cmd.ExecuteReader();
-        //            if (!dataReader.HasRows) {
-        //                dataReader.Close();
-        //                return false;
-        //            }
-        //            dataReader.Read();
-        //            var encodedPasswordOnServer = (string)dataReader["MDP"];
-        //            //byte[] encodedPassword = new UTF8Encoding().GetBytes(passwd);
-        //            //byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
-        //            //string encodedPasswordSentToForm = BitConverter.ToString(hash);
-        //            dataReader.Close();
-        //            //return encodedPasswordSentToForm == encodedPasswordOnServer.Trim();
-        //            return encodedPasswordOnServer == passwd;
-        //        }
-
-        //        catch (Exception e) {
-        //            string msg = e.Message;
-        //            return false;
-        //        }
-
-        //        finally {
-        //            cnx.Close();
-        //        }
-        //    }
-        //}
-
-        //public static bool Authentifie(string username, string password) {
-        //    string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-        //    SqlConnection connexion = new SqlConnection(chConnexion);
-        //    string requete = "SELECT * FROM [Utilisateurs] WHERE Courriel = " + username; // + "'";
-        //    SqlCommand commande = new SqlCommand(requete, connexion);
-        //    commande.CommandType = System.Data.CommandType.Text;
-        //    try {
-        //        connexion.Open();
-        //        SqlDataReader dr = commande.ExecuteReader();
-        //        if (!dr.HasRows) {
-        //            dr.Close();
-        //            return false;
-        //        }
-        //        dr.Read();
-        //        var passwd = (string)dr["MDP"];
-        //        byte[] hashPassword = new UTF8Encoding().GetBytes(password);
-
-        //    byte[] hash =
-        //    ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-
-        //        string hashString = BitConverter.ToString(hash);
-        //        dr.Close();
-        //        return hashString == passwd;
-        //    }
-        //    finally {
-        //        connexion.Close();
-        //    }
-        //}
+        }       
 
         public static string ancienMp(Utilisateur u) {
             byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
             byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
             string hashString = BitConverter.ToString(hash);
-            return hashString;
-            //string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-            //string requete = "SELECT MDP FROM Utilisateurs WHERE Id = " + u.Id;
-
-            //SqlConnection connexion = new SqlConnection(chConnexion);
-            //SqlCommand commande = new SqlCommand(requete, connexion);
-            //commande.CommandType = System.Data.CommandType.Text;
-            //try {
-            //    connexion.Open();
-            //    SqlDataReader dr = commande.ExecuteReader();
-            //    dr.Read();
-            //    string s = (string)dr["MDP"];
-
-
-
-            //    return s;
-            //}
-            //catch (Exception e) {
-            //    string Message = e.Message;
-            //}
-            //finally {
-            //    connexion.Close();
-            //}
-            //return null;
+            return hashString;          
         }
 
         private static string ConnectionString {

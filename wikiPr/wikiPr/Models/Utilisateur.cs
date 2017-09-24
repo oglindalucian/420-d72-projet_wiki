@@ -11,14 +11,7 @@ using wikiPr.Ressource;
 
 namespace wikiPr.Models {
     public class Utilisateur {
-       // public static string[] Langues = { "fr-CA", "en-CA" };
-
-        //public static List<string> Langues = new List<string>();
-
-       // public static
-          //  enum Langues { fr, en, es };
-        //enum Langues : byte { fr, en, es };
-        
+             
         [Key]
         [Required]
         public int Id { get; set; }
@@ -34,14 +27,13 @@ namespace wikiPr.Models {
         public string NomFamille { get; set; }
 
         [Required(ErrorMessage = "Indiquez votre courriel")]
-        // [Uniqueness("Courriel")]
-      //  [Display(Name = "Adresse courriel", ResourceType = typeof(ResourceView))]
+        //  [Display(Name = "Adresse courriel", ResourceType = typeof(ResourceView))]
         [Display(Name = "Adresse courriel")]       
         [DataType(DataType.EmailAddress)]
          public string Courriel { get; set; }
 
-        //  [Required]
-        //[Required(ErrorMessage = "Indiquez le mot de passe"), StringLength(50, MinimumLength=6)]
+        
+        
         [Required, StringLength(50, MinimumLength = 6, ErrorMessage = "Le mot de passe doit compter minimum 6 caractères et maximum 50!")]
         [DataType(DataType.Password)]               
        // [Display(Name = "Mot de passe", ResourceType = typeof(ResourceView))]
@@ -49,15 +41,12 @@ namespace wikiPr.Models {
         public string MDP { get; set; }
 
         [Required, StringLength(50, MinimumLength = 6, ErrorMessage = "Confirmez le mot de passe: minimum 6 caractères et maximum 50!")]
-        //[Required]
         [DataType(DataType.Password)]
        [Display(Name = "Confirmez le mot de passse:")]
-         [Compare("MDP", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]
-        //[Compare("MDP")]
+         [Compare("MDP", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]        
         public string Confirmation { get; set; }
 
-        //[Required]
-       // [Required(ErrorMessage = "Choisissez la langue")]
+       
        // [Display(Name = "Langue", ResourceType = typeof(ResourceView))]
         [Display(Name = "Langue")]
         public string Langue { get; set; }
@@ -86,14 +75,7 @@ namespace wikiPr.Models {
             this.Prenom = up.Prenom;
             this.NomFamille = up.NomFamille;
             this.Langue = up.Langue;
-        }
-
-        //public Utilisateur(UtilisateurMP ump) {
-        //    this.Courriel = ump.Courriel;
-        //    this.MDP = ump.MDP1;//????
-        //}
-
-       public static Utilisateur defaut = new Utilisateur(-1, "fr");
+        }    
 
 
         }

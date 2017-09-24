@@ -13,7 +13,7 @@ namespace wikiPr.Models.Views {
         [Required(ErrorMessage = "Indiquez votre nom de famille")]
         public string NomFamille { get; set; }
 
-        // [Uniqueness("Courriel")]
+        
         [Required(ErrorMessage = "Indiquez votre courriel")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Adresse Courriel")]

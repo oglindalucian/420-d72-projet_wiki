@@ -96,30 +96,7 @@
 </div>
 <div id="btn_langue">
     
-        @*<select id="lang">
-            <option value="" selected>@langue</option>
-            <option value="fr" name="fr">@francais</option>
-            <option value="en" name="en">@anglais</option>
-            <option value="es" name="es">@espagnol</option>
-        </select>
-
-    <script>
-        var x = document.getElementById("lang");
-        var lg = x.options[x.selectedIndex].value;       
-    </script>*@
-
-    @*<form action="">
-        @Html.DropDownList("Langue", new List<SelectListItem> {
-                new SelectListItem {Text=@langue, Value="", Selected=true},
-                new SelectListItem {Text=@francais, Value="fr"},
-                new SelectListItem {Text=@espagnol, Value="es"},
-                new SelectListItem {Text=@anglais, Value="en"} })
-        <input type="submit" value="go" />
-    </form>*@  
-    
-    @*@Html.ActionLink(@francais, "LangFr", "home") 
-    @Html.ActionLink(@anglais, "LangEn", "home")
-    @Html.ActionLink(@espagnol, "LangEs", "home")*@
+       
 
    @Html.Action("ViewLang", "home") 
        

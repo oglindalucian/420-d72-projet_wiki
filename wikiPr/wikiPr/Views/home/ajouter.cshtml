@@ -44,8 +44,8 @@
     <script src="~/ckeditor/ckeditor.js"></script>
     <script>
       function copiertexte() {
-          //var x = document.getElementById("acopier").firstChild.nodeValue;
-          var x = document.getElementsByName("acopier")[0].firstChild.nodeValue;
+          var x = document.getElementById("texte").firstChild.firstChild.nodeValue;
+         // var x = document.getElementsByName("acopier")[0].firstChild.nodeValue;
          // var x = document.getElementsByClassName("ckeditor")[0].firstChild.nodeValue;
          // var x = document.getElementsByTagName("textarea")[0].innerHTML;
         document.getElementById("apercu_art").innerHTML = x;
@@ -91,7 +91,8 @@
                     @Html.Label(@contenu)<br/>
                     @*<div class="col-md-10">*@
                        
-                        @Html.TextAreaFor(model => model.Contenu,  new { @class = "ckeditor", @id = "acopier", @name = "acopier" })
+            <div id="texte"> @Html.TextAreaFor(model => model.Contenu, new { @class = "ckeditor", @id = "acopier", @name = "acopier" })</div>
+
             
                          
 
@@ -115,16 +116,7 @@
     <br />
     <div>
         <button onclick="copiertexte()">@appercu</button> 
-        @*<input type="button" value="Apperçu de l'article" onclick="window.open(@Html.Action("Apercu"))" />*@ @*???*@     
-       @*@{ 
-           Apercu ap = new Apercu(Model.Contenu);
-       }
-         @Html.ActionLink("Appercu de l'article","Apercu", new { Content = ap.Content }, null)*@
-        @*<form action="/home/ajouter" method="get">
-            @*<input type="submit" value="Appercu de l'article" onclick="copiertexte()" />*@
-            @*<button onclick="copiertexte()">Apperçu de l'article</button>*@
-            @*<input type="button" value="Apperçu de l'article" onclick="window.open('/home/Apercu')" />
-        </form>*@
+     
     </div>
     <br/>
    
