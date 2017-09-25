@@ -73,66 +73,7 @@ namespace wikiPr.Controllers
             return RedirectToAction("ajouter", "home", new { Titre = titre });
 
         }
-
-        
-
-
-
-        ////[ChildActionOnly()]
-        //public ActionResult ViewLang() {
-        //    return PartialView();
-        //}
-
-        //[HttpPost]
-        //public ActionResult ViewLang(Utilisateur u) {
-        //    HttpCookie cookie = new HttpCookie("Cookie");
-        //    cookie.Value = Request.Form["lalang"];
-        //    this.ControllerContext.HttpContext.Response.Cookies.Add(cookie);
-
-        //    //if (User.Identity.IsAuthenticated) {
-        //    //    Utilisateurs.updatelangue(u);
-        //    //}
-        //    //else {
-        //    //    string langue = Request.Form["lalang"];// Request.QueryString["lalang"];//Request.Form["lalang"];
-        //    //    if (!string.IsNullOrEmpty(langue)) {
-        //    //        Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(langue);
-        //    //    }
-        //    //}
-        //    //return PartialView();
-        //    return RedirectToAction("index", "home");
-        //}
-
-        //[HttpPost]
-        //public ActionResult ViewLang(string lang) {
-        //    // Utilisateur u = new Utilisateur(-1, lang);
-        //    //Utilisateurs.editlangue(lang);
-        //    lang = Request.Form["lang"];
-
-        //    //HttpCookie myCookie = new HttpCookie("UserLanguage");
-        //    //myCookie["Language"] = "Arial";
-        //    //myCookie["Color"] = "Blue";
-        //    //myCookie.Expires = DateTime.Now.AddDays(1d);
-        //    //Response.Cookies.Add(myCookie);
-
-
-
-        //    if (lang != null) {
-        //        if (lang.IndexOf("fr") != -1) {
-        //            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-        //        }
-        //        if (lang.IndexOf("en") != -1) {
-        //            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-        //        }
-        //        else {
-
-        //            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-        //        }
-        //    }
-        //    return PartialView();
-        //    //return new RedirectResult(Request.UrlReferrer.AbsoluteUri);
-        //}
+       
 
         public ActionResult afficher(string titre) {
             Article a = Article.Find(titre);
@@ -233,16 +174,14 @@ namespace wikiPr.Controllers
 
 
         public ActionResult ajouterApercu() {
-            ViewBag.apercu = Request.Form["acopier"];//?
+            ViewBag.apercu = Request.Form["acopier"];
             string texte = ViewBag.apercu;
             Article a = new Article("-1", texte);
-            //return RedirectToAction ("ajouter", "home", new {Conten
+           
             return View(a);
         }
 
-        //    public ActionResult ajouterApercu() {
-
-        //}
+       
 
         [Authorize]
         public ActionResult modifier(string titre) {

@@ -200,7 +200,7 @@ namespace wikiPr.Controllers
             string er = "";         
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-            //string cookie = "";
+           
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 str = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = str;
