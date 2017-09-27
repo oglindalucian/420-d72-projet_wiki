@@ -20,13 +20,11 @@ namespace wikiPr.Models {
             bool TEST = true;
             byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
             byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
-            string hashString = BitConverter.ToString(hash);
-
-            string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
+            string hashString = BitConverter.ToString(hash);         
             string requete = 
            "INSERT INTO Utilisateurs(MDP, Prenom, NomFamille, Courriel, Langue) VALUES ('" + hashString + "', '" + u.Prenom + "', '" + u.NomFamille +
            "', '" + u.Courriel + "', '" + u.Langue + "')";
-            SqlConnection connexion = new SqlConnection(chConnexion);
+            SqlConnection connexion = new SqlConnection(ConnectionString);
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
             try {
@@ -159,8 +157,8 @@ namespace wikiPr.Models {
 
 
         public static bool updates(Utilisateur u) {
-            string cStr = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-            using (SqlConnection cnx = new SqlConnection(cStr)) {
+         
+            using (SqlConnection cnx = new SqlConnection(ConnectionString)) {
                 byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
                 byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 string hashString = BitConverter.ToString(hash);
@@ -214,8 +212,8 @@ namespace wikiPr.Models {
 
 
         public static Utilisateur FindByCourriel(string courriel) {
-            string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-            SqlConnection connexion = new SqlConnection(chConnexion);
+         
+            SqlConnection connexion = new SqlConnection(ConnectionString);
             string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" + courriel + "';";
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
@@ -279,8 +277,7 @@ namespace wikiPr.Models {
         
         public static bool Authentifie(string login, string passwd) {
            
-            string cStr = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
-            using (SqlConnection cnx = new SqlConnection(cStr)) {
+           using (SqlConnection cnx = new SqlConnection(ConnectionString)) {
                 string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" + login + "'";
 
                 SqlCommand cmd = new SqlCommand(requete, cnx);
@@ -322,6 +319,8 @@ namespace wikiPr.Models {
             string hashString = BitConverter.ToString(hash);
             return hashString;          
         }
+
+       
 
         private static string ConnectionString {
         get { return ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString; }

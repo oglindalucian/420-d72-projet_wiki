@@ -16,7 +16,23 @@ namespace wikiPr.Controllers
     {
         // GET: Utilisateurs
 
-        string str;   
+        string str;
+
+       public static void CreateCulture(string str) {
+            if (str.IndexOf("fr") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
+
+            }
+            if (str.IndexOf("en") != -1) {
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
+
+            }
+            else {
+
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
+            }
+
+        }
 
         public ActionResult Connexion() {
             ViewBag.error = "";
@@ -53,39 +69,16 @@ namespace wikiPr.Controllers
         [HttpGet]
         public ActionResult Inscription() {
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
             return View();
         }
 
@@ -102,41 +95,18 @@ namespace wikiPr.Controllers
 
         public ActionResult Profil() { 
             string nom = User.Identity.Name;
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            Utilisateur u = Utilisateurs.FindByCourriel(nom);
             UtilisateurProfil up = new UtilisateurProfil(u);
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
            
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
             return View(up);
 
         }
@@ -157,66 +127,36 @@ namespace wikiPr.Controllers
             
             string courriel = User.Identity.Name;
 
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            Utilisateur u = Utilisateurs.FindByCourriel(courriel);
             UtilisateurMP ump = new UtilisateurMP();
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];            
+
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
 
             return View(ump);
         }
 
         [HttpPost]
         public ActionResult ModifierMdP(UtilisateurMP ump) {
-            string er = "";         
+            string er = "";
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-           
+            string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
-                str = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
-                ViewBag.cookie = str;
-                if (str.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (str.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (str.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                CreateCulture(cookie);
+                str = cookie;
             }
+            else CreateCulture(str);
 
             if (str.IndexOf("fr") != -1) {
                 er = "Le mot de passe fourni est incorrect.";

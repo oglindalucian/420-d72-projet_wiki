@@ -13,18 +13,9 @@ namespace wikiPr.Controllers
     public class homeController : Controller
     {
         // GET: home
-        string str;
+        string str;       
 
-       
-        
-
-        public ActionResult Index() {
-            ViewBag.lesArticles = Article.lesArticles();
-
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
+        public static void CreateCulture(string str) {
             if (str.IndexOf("fr") != -1) {
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
 
@@ -38,24 +29,21 @@ namespace wikiPr.Controllers
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
             }
 
+        }
+
+        public ActionResult Index() {
+            ViewBag.lesArticles = Article.lesArticles();
+            
+            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
-
+            else CreateCulture(str);
 
             return View(Article.lesArticles());
         }
@@ -80,83 +68,36 @@ namespace wikiPr.Controllers
             ViewBag.letitre = titre;
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
 
-                return View(a);
+            return View(a);
         }
 
         [Authorize]
         public ActionResult ajouter(string titre) {
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
-
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
 
-                if (titre == null) { return View(new Article()); }
+            if (titre == null) { return View(new Article()); }
             else return View(new Article(titre));
 
         }
@@ -188,43 +129,19 @@ namespace wikiPr.Controllers
             ViewBag.titre = titre;
             ViewBag.lesArticles = Article.lesArticles();
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
-
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
 
 
-                return View(Article.Find(titre));
+            return View(Article.Find(titre));
         }
 
         [HttpPost]
@@ -243,43 +160,19 @@ namespace wikiPr.Controllers
             ViewBag.lesArticles = Article.lesArticles();
             Article a = Article.Find(titre);
 
-            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
             if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
-
-            if (str.IndexOf("fr") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-            }
-            if (str.IndexOf("en") != -1) {
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-            }
-            else {
-
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-            }
-
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+            else CreateCulture(str);
 
 
-                return View(a);
+            return View(a);
         }
 
         [HttpPost]
@@ -293,19 +186,9 @@ namespace wikiPr.Controllers
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
                 ViewBag.cookie = cookie;
-                if (cookie.IndexOf("fr") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr");
-
-                }
-                if (cookie.IndexOf("en") != -1) {
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en");
-
-                }
-                else if (cookie.IndexOf("es") != -1) {
-
-                    Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("es");
-                }
+                CreateCulture(cookie);
             }
+
             return View();
         }
 
