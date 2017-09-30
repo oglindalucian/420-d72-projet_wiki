@@ -56,3 +56,7 @@ C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\en\wikiPr.resources.dll
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\es\wikiPr.resources.dll
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\wikiPr.Ressource.ResourceView.es.resources
 C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\obj\Debug\es\wikiPr.resources.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\EntityFramework.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\EntityFramework.SqlServer.dll
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\EntityFramework.xml
+C:\Users\lucian\Desktop\wikiPr\wikiPr\wikiPr\bin\EntityFramework.SqlServer.xml

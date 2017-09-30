@@ -22,7 +22,7 @@
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
         Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+        if (User.Identity.IsAuthenticated && u != null) { str = u.accederLangue; }
         if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
 
 

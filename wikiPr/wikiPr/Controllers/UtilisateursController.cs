@@ -67,11 +67,12 @@ namespace wikiPr.Controllers
         }
 
         [HttpGet]
-        public ActionResult Inscription() {
+        public ActionResult Inscription() { //view de UtilisateurInscription
 
-            Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+          //  Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
+           // UtilisateurInscription ui = new UtilisateurInscription();
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+          //  if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -83,7 +84,8 @@ namespace wikiPr.Controllers
         }
 
         [HttpPost]
-        public ActionResult Inscription(Utilisateur u) {
+        public ActionResult Inscription(UtilisateurInscription ui) {
+            Utilisateur u = new Utilisateur(ui);
             if (ModelState.IsValid) { 
                 Utilisateurs.Add(u);
                 return RedirectToAction("index", "home");
@@ -99,7 +101,7 @@ namespace wikiPr.Controllers
             UtilisateurProfil up = new UtilisateurProfil(u);
            
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -131,7 +133,7 @@ namespace wikiPr.Controllers
             UtilisateurMP ump = new UtilisateurMP();
 
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -148,7 +150,7 @@ namespace wikiPr.Controllers
             string er = "";
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -171,7 +173,7 @@ namespace wikiPr.Controllers
                 er = "Contraseña incorrecta.";
             }
             
-            if (Utilisateurs.hacherMot(ump.MDP1).Trim() == u.MDP.Trim()) {
+            if (Utilisateurs.hacherMot(ump.MDP1).Trim() == u.accederMDP.Trim()) {
                 ViewBag.error = "";
                 if (ModelState.IsValid) {
                     Utilisateurs.Ajour(u, ump);

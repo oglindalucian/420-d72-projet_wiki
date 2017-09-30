@@ -7,28 +7,54 @@ using wikiPr.Ressource;
 
 namespace wikiPr.Models {
     public class Article {
-       
 
-       // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
+
+        // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
         [Display(Name = "Titre")]
-        public string Titre { get; set; }
+        private string Titre { get; set; }
 
         //[Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
         [Display(Name = "Contenu de l'article")]
-        public string Contenu { get; set; }
+        private string Contenu { get; set; }
 
-       // [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
+        // [Display(Name = "Dernière date de modification", ResourceType = typeof(ResourceView))]
         [Display(Name = "Dernière date de modification")]
-        public DateTime DateModification { get; set; }
+        private DateTime DateModification { get; set; }
 
         //[Display(Name = "Révision", ResourceType = typeof(ResourceView))]
         [Display(Name = "Révision")]
-        public int Revision { get; set; }
+        private int Revision { get; set; }
 
-       // [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
+        // [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
         [Display(Name = "Id du contributeur")]
         public int IdContributeur { get; set; }
+
+        public string accederTitre {
+            get { return Titre; }
+            set { Titre = value; }
+        }
+
+        public string accederContenu {
+            get { return Contenu; }
+            set { Contenu = value; }
+        }
+
+        public DateTime accederDateModification {
+            get {return DateModification;}
+            set { DateModification = value; }
+        }
+
+        public int accederRevision {
+            get { return Revision; }
+            set { Revision = value; }
+        }
+
+        public int accederIdContributeur {
+            get { return IdContributeur; }
+            set { IdContributeur = value; }
+        }
+
 
         public Article() {}
 

@@ -20,7 +20,7 @@ namespace wikiPr.Models.Views {
         public UtilisateurMP() { }
 
         public UtilisateurMP(Utilisateur u) {
-            this.MDP1 = u.MDP;
+            this.MDP1 = u.accederMDP;
         }
 
     }

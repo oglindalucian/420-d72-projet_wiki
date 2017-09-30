@@ -16,9 +16,9 @@ namespace wikiPr.Models.Views {
         public string Langue { get; set; }
 
         public UtilisateurProfil (Utilisateur u) {
-            this.Prenom = u.Prenom;
-            this.NomFamille = u.NomFamille;
-            this.Langue = u.Langue;
+            this.Prenom = u.accederPrenom;
+            this.NomFamille = u.accederNomFamille;
+            this.Langue = u.accederLangue;
         }
 
         public UtilisateurProfil() { }

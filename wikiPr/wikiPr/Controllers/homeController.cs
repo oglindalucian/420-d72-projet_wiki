@@ -13,7 +13,9 @@ namespace wikiPr.Controllers
     public class homeController : Controller
     {
         // GET: home
-        string str;       
+        string str;  
+        
+             
 
         public static void CreateCulture(string str) {
             if (str.IndexOf("fr") != -1) {
@@ -36,7 +38,7 @@ namespace wikiPr.Controllers
             
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -53,7 +55,7 @@ namespace wikiPr.Controllers
             string titre = Request.Form["texte"];
             ViewBag.lesArticles = Article.lesArticles();
             foreach (Article a in ViewBag.lesArticles) {
-                if (a.Titre == titre) {
+                if (a.accederTitre == titre) {
                     return RedirectToAction("afficher", "home", new { Titre = titre });
                 }
             }       
@@ -70,7 +72,7 @@ namespace wikiPr.Controllers
 
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -88,7 +90,7 @@ namespace wikiPr.Controllers
 
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -110,7 +112,7 @@ namespace wikiPr.Controllers
             Utilisateur u = Utilisateurs.FindByCourriel(courriel);
             int id = u.Id;
             Article.Update(a, id);
-            return RedirectToAction("afficher", new { Titre = a.Titre });
+            return RedirectToAction("afficher", new { Titre = a.accederTitre });
             }
 
 
@@ -131,7 +133,7 @@ namespace wikiPr.Controllers
 
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
@@ -152,7 +154,7 @@ namespace wikiPr.Controllers
             int id = u.Id;
             Article.Update(a, id);
 
-            return RedirectToAction("afficher", new { Titre = a.Titre });
+            return RedirectToAction("afficher", new { Titre = a.accederTitre });
         }
 
         [Authorize]
@@ -162,7 +164,7 @@ namespace wikiPr.Controllers
 
             Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
             str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
-            if (User.Identity.IsAuthenticated && u != null) str = u.Langue;
+            if (User.Identity.IsAuthenticated && u != null) str = u.accederLangue;
             string cookie = "";
             if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
                 cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;

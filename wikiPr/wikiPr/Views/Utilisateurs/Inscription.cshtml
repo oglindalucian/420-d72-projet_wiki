@@ -1,4 +1,4 @@
-﻿@model wikiPr.Models.Utilisateur
+﻿@model wikiPr.Models.Views.UtilisateurInscription
 @using wikiPr.Models
 @using System.Globalization;
 @using System.Linq;
@@ -7,7 +7,6 @@
 @{
     ViewBag.Title = "Inscription";
     Layout = "~/Views/Shared/Layout.cshtml";
-
     string str = "";
     string senregistrer = "S'enregistrer";
     string accueil = "Accueil";
@@ -21,7 +20,7 @@
     try {
         str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
         Utilisateur u = Utilisateurs.FindByCourriel(User.Identity.Name);
-        if (User.Identity.IsAuthenticated && u != null) { str = u.Langue; }
+        if (User.Identity.IsAuthenticated && u != null) { str = u.accederLangue; }
         if (ViewBag.cookie != null && ViewBag.cookie != "") { str = ViewBag.cookie; }
 
 
@@ -62,12 +61,15 @@
     }
 }
 
+
+
 @using (Html.BeginForm("Inscription", "Utilisateurs", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
        
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
           @Html.Label(@prenom)
@@ -86,7 +88,7 @@
         </div>
 
         <div class="form-group">
-          @Html.Label(@courriel)
+            @Html.Label(@courriel)
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Courriel, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Courriel, "", new { @class = "text-danger" })
@@ -129,5 +131,5 @@
 }
 
 <div>
-    @Html.ActionLink(@accueil, "index", "home")
+   @Html.ActionLink(@accueil, "index", "home")
 </div>

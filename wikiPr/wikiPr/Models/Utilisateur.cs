@@ -19,18 +19,18 @@ namespace wikiPr.Models {
         [Required(ErrorMessage = "Indiquez votre prenom")]
        // [Display(Name = "Prenom", ResourceType = typeof(ResourceView))]
         [Display(Name = "Prenom")]
-        public string Prenom { get; set; }
+        private string Prenom { get; set; }
 
         [Required(ErrorMessage = "Indiquez votre nom de famille")]
        // [Display(Name = "Nom de famille", ResourceType = typeof(ResourceView))]
         [Display(Name = "Nom de famille")]     
-        public string NomFamille { get; set; }
+        private string NomFamille { get; set; }
 
         [Required(ErrorMessage = "Indiquez votre courriel")]
         //  [Display(Name = "Adresse courriel", ResourceType = typeof(ResourceView))]
         [Display(Name = "Adresse courriel")]       
         [DataType(DataType.EmailAddress)]
-         public string Courriel { get; set; }
+         private string Courriel { get; set; }
 
         
         
@@ -38,21 +38,21 @@ namespace wikiPr.Models {
         [DataType(DataType.Password)]               
        // [Display(Name = "Mot de passe", ResourceType = typeof(ResourceView))]
         [Display(Name = "Mot de passse")]
-        public string MDP { get; set; }
+        private string MDP { get; set; }
 
         [Required, StringLength(50, MinimumLength = 6, ErrorMessage = "Confirmez le mot de passe: minimum 6 caractères et maximum 50!")]
         [DataType(DataType.Password)]
-       [Display(Name = "Confirmez le mot de passse:")]
+       //[Display(Name = "Confirmez le mot de passse:")]
          [Compare("MDP", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]        
-        public string Confirmation { get; set; }
+        private string Confirmation { get; set; }
 
        
        // [Display(Name = "Langue", ResourceType = typeof(ResourceView))]
         [Display(Name = "Langue")]
-        public string Langue { get; set; }
+        private string Langue { get; set; }
 
        
-        public Utilisateur() { }
+        public Utilisateur() {; }
         
         public Utilisateur(int id) {
             this.Id = id;
@@ -75,8 +75,38 @@ namespace wikiPr.Models {
             this.Prenom = up.Prenom;
             this.NomFamille = up.NomFamille;
             this.Langue = up.Langue;
-        }    
-
-
+        } 
+        
+        public string accederPrenom {
+            get { return Prenom; }
+            set { Prenom = value; }
+        } 
+        
+        public string accederNomFamille {
+            get { return NomFamille; }
+            set { NomFamille = value; }
+        } 
+        
+        public string accederCourriel {
+            get { return Courriel; }
+            set { Courriel = value; }
         }
+
+        public string accederMDP {
+            get { return MDP; }
+            set { MDP = value; }
+        }
+
+        public string accederConfirmation {
+            get { return Confirmation; }
+            set { Confirmation = value; }
+        }
+
+        public string accederLangue {
+            get { return Langue; }
+            set { Langue = value; }
+        }
+
+
+    }
 }

@@ -18,12 +18,12 @@ namespace wikiPr.Models {
            
 
             bool TEST = true;
-            byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+            byte[] hashPassword = new UTF8Encoding().GetBytes(u.accederMDP);
             byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
             string hashString = BitConverter.ToString(hash);         
             string requete = 
-           "INSERT INTO Utilisateurs(MDP, Prenom, NomFamille, Courriel, Langue) VALUES ('" + hashString + "', '" + u.Prenom + "', '" + u.NomFamille +
-           "', '" + u.Courriel + "', '" + u.Langue + "')";
+           "INSERT INTO Utilisateurs(MDP, Prenom, NomFamille, Courriel, Langue) VALUES ('" + hashString + "', '" + u.accederPrenom + "', '" + u.accederNomFamille +
+           "', '" + u.accederCourriel + "', '" + u.accederLangue + "')";
             SqlConnection connexion = new SqlConnection(ConnectionString);
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
@@ -45,8 +45,8 @@ namespace wikiPr.Models {
             using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
                
 
-                string requete = "UPDATE Utilisateurs SET Prenom = '" + u.Prenom + "', NomFamille = '"
-                    + u.NomFamille + "', Langue = '" + u.Langue + "' WHERE Id = " + u.Id;      
+                string requete = "UPDATE Utilisateurs SET Prenom = '" + u.accederPrenom + "', NomFamille = '"
+                    + u.accederNomFamille + "', Langue = '" + u.accederLangue + "' WHERE Id = " + u.Id;      
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -131,7 +131,7 @@ namespace wikiPr.Models {
             using (SqlConnection connexion = new SqlConnection(ConnectionString)) {
                
 
-                string requete = "UPDATE Utilisateurs SET Langue = '" + u.Langue
+                string requete = "UPDATE Utilisateurs SET Langue = '" + u.accederLangue
                      + "' WHERE Id = " + u.Id;      
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
@@ -159,7 +159,7 @@ namespace wikiPr.Models {
         public static bool updates(Utilisateur u) {
          
             using (SqlConnection cnx = new SqlConnection(ConnectionString)) {
-                byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+                byte[] hashPassword = new UTF8Encoding().GetBytes(u.accederMDP);
                 byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 string hashString = BitConverter.ToString(hash);
 
@@ -223,11 +223,11 @@ namespace wikiPr.Models {
                 dr.Read();
                 Utilisateur u = new Utilisateur {
                     Id = (int)dr["Id"],
-                    Prenom = (string)dr["Prenom"],
-                    NomFamille = (string)dr["NomFamille"],
-                    Courriel = (string)dr["Courriel"],
-                    MDP = (string)dr["MDP"],
-                    Langue = (string)dr["Langue"]
+                    accederPrenom = (string)dr["Prenom"],
+                    accederNomFamille = (string)dr["NomFamille"],
+                    accederCourriel = (string)dr["Courriel"],
+                    accederMDP = (string)dr["MDP"],
+                    accederLangue = (string)dr["Langue"]
                 };
 
                 return u;
@@ -265,12 +265,12 @@ namespace wikiPr.Models {
     private static Utilisateur ExtraireUtilisateur(IDataReader dr) {
         Utilisateur u = new Utilisateur();
         u.Id = (int)dr["Id"];
-        u.Courriel = (string)dr["Courriel"];
-        u.MDP = (string)dr["MDP"];
-        u.NomFamille = (string)dr["NomFamille"];
-        u.Prenom = (string)dr["Prenom"];
-        u.Courriel = (string)dr["courriel"];
-        u.Langue = (string)dr["Langue"];
+        u.accederCourriel = (string)dr["Courriel"];
+        u.accederMDP = (string)dr["MDP"];
+        u.accederNomFamille = (string)dr["NomFamille"];
+        u.accederPrenom = (string)dr["Prenom"];
+        u.accederCourriel = (string)dr["courriel"];
+        u.accederLangue = (string)dr["Langue"];
         return u;
     }
 
@@ -314,7 +314,7 @@ namespace wikiPr.Models {
         }       
 
         public static string ancienMp(Utilisateur u) {
-            byte[] hashPassword = new UTF8Encoding().GetBytes(u.MDP);
+            byte[] hashPassword = new UTF8Encoding().GetBytes(u.accederMDP);
             byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
             string hashString = BitConverter.ToString(hash);
             return hashString;          

@@ -26,11 +26,22 @@ namespace wikiPr.Models.Views {
 
         [Required(ErrorMessage = "Confirmez le mot de passe!"), StringLength(50, MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirmez le mot de passse:")]
+        //[Display(Name = "Confirmez le mot de passse:")]
         [Compare("MDP", ErrorMessage = "Le mot de passe et la confirmation ne correspondent pas.")]
         public string Confirmation { get; set; }
 
         [Required(ErrorMessage = "Choisissez la langue")]
         public string Langue { get; set; }
+
+        public UtilisateurInscription(Utilisateur u) {
+            this.Prenom = u.accederPrenom;
+            this.NomFamille = u.accederNomFamille;
+            this.Courriel = u.accederCourriel;
+            this.MDP = u.accederMDP;
+            this.Confirmation = u.accederConfirmation;
+            this.Langue = u.accederLangue;
+        }
+
+        public UtilisateurInscription() { }
     }
 }
