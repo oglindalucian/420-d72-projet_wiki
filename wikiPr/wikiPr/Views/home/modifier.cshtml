@@ -95,8 +95,8 @@
                 @Html.Label(@titre)
                 @*@wikiPr.Ressource.ResourceView.Titre*@
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Titre, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Titre, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.accederTitre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.accederTitre, "", new { @class = "text-danger" })
                 </div>
             </div>
     
@@ -105,8 +105,8 @@
                 @*@wikiPr.Ressource.ResourceView.Contenu*@
                  <div class="col-md-10">
                     @*@Html.TextAreaFor(model => model.Contenu, new { htmlAttributes = new { @class = "form-control" } })*@
-                    @Html.TextAreaFor(model => model.Contenu, new { @class = "ckeditor", @id = "acopier" })
-                    @Html.ValidationMessageFor(model => model.Contenu, "", new { @class = "text-danger" })
+                    @Html.TextAreaFor(model => model.accederContenu, new { @class = "ckeditor", @id = "acopier" })
+                    @Html.ValidationMessageFor(model => model.accederContenu, "", new { @class = "text-danger" })
                 </div>
             </div>
     
@@ -120,9 +120,9 @@
     }
     
     <div>
-        @Html.ActionLink(@anmod, "afficher", new { Titre = Model.Titre }, null) |
+        @Html.ActionLink(@anmod, "afficher", new { Titre = Model.accederTitre }, null) |
         @Html.ActionLink(@accueil, "Index") |
-        @Html.ActionLink(@suppr, "supprimer", new { Titre = Model.Titre }, null)
+        @Html.ActionLink(@suppr, "supprimer", new { Titre = Model.accederTitre }, null)
     </div>
 </body>
 </html>

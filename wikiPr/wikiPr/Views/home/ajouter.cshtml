@@ -98,8 +98,8 @@
                 @*@wikiPr.Ressource.ResourceView.Titre*@
                 @Html.Label(@titre)
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Titre, new { htmlAttributes = new { @class = "form-control", @value = @ViewBag.letitre } })
-                    @Html.ValidationMessageFor(model => model.Titre, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.accederTitre, new { htmlAttributes = new { @class = "form-control", @value = @ViewBag.letitre } })
+                    @Html.ValidationMessageFor(model => model.accederTitre, "", new { @class = "text-danger" })
                 </div>
             </div>
            
@@ -110,12 +110,12 @@
                     @*<div class="col-md-10">*@
            
 
-                <div id="texte"> @Html.TextAreaFor(model => model.Contenu, new { @class = "ckeditor", @id = "acopier", @name = "acopier", @form = "confirmationForm" })</div>
+                @Html.TextAreaFor(model => model.accederContenu, new { @class = "ckeditor", @id = "acopier", @name = "acopier" })   @*@form = "confirmationForm"*@
                  
             
                          
 
-                        @Html.ValidationMessageFor(model => model.Contenu, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.accederContenu, "", new { @class = "text-danger" })
                     @*</div>*@
                 @*</div>*@
             

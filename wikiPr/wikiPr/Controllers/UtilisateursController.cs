@@ -36,11 +36,28 @@ namespace wikiPr.Controllers
 
         public ActionResult Connexion() {
             ViewBag.error = "";
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                CreateCulture(cookie);
+            }
+            else CreateCulture(str);
             return View();
         }
 
         [HttpPost]
         public ActionResult Connexion(string username, string password, string ReturnUrl = "") {
+            str = Request.ServerVariables["HTTP_ACCEPT_LANGUAGE"];
+            string cookie = "";
+            if (this.ControllerContext.HttpContext.Request.Cookies.AllKeys.Contains("Cookie")) {
+                cookie = this.ControllerContext.HttpContext.Request.Cookies["Cookie"].Value;
+                ViewBag.cookie = cookie;
+                CreateCulture(cookie);
+            }
+            else CreateCulture(str);
+
             ViewBag.error = "";
             ViewBag.ReturnUrl = ReturnUrl;
             if (!Utilisateurs.Authentifie(username, password)) {

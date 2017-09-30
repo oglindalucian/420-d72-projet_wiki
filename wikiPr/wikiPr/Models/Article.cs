@@ -12,7 +12,7 @@ namespace wikiPr.Models {
         // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
         [Display(Name = "Titre")]
-        private string Titre { get; set; }
+        public string Titre { get; set; }
 
         //[Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
         [Display(Name = "Contenu de l'article")]
@@ -59,12 +59,12 @@ namespace wikiPr.Models {
         public Article() {}
 
         public Article(string titre) {
-            this.Titre = titre;
+            this.accederTitre = titre;
         }
 
         public Article(string titre, string contenu) {
-            this.Titre = titre;
-            this.Contenu = contenu;
+            this.accederTitre = titre;
+            this.accederContenu = contenu;
         }
 
         public static List<Article> lesArticles() {
@@ -79,11 +79,11 @@ namespace wikiPr.Models {
                 SqlDataReader dr = commande.ExecuteReader();
                 while (dr.Read()) {
                     Article a = new Article {
-                        Titre = (string)dr["Titre"],
-                        Contenu = (string)dr["Contenu"],
-                        DateModification = (DateTime)dr["DateModification"],
-                        Revision = (int)dr["Revision"],
-                        IdContributeur = (int)dr["IdContributeur"]
+                        accederTitre = (string)dr["Titre"],
+                        accederContenu = (string)dr["Contenu"],
+                        accederDateModification = (DateTime)dr["DateModification"],
+                        accederRevision = (int)dr["Revision"],
+                        accederIdContributeur = (int)dr["IdContributeur"]
                     };
                     maListe.Add(a);
                 }
@@ -105,7 +105,7 @@ namespace wikiPr.Models {
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
             string requete = "INSERT INTO Article (Titre, Contenu, DateModification, Revision, IdContributeur) VALUES ('"
-            + a.Titre + "','" + a.Contenu + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," + a.Revision + "," + 1 + ")";
+            + a.accederTitre + "','" + a.accederContenu + "','" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," + a.accederRevision + "," + 1 + ")";
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
             try {
@@ -127,11 +127,11 @@ namespace wikiPr.Models {
                 SqlDataReader dr = commande.ExecuteReader();
                 dr.Read();
                 Article a = new Article {
-                    Titre = (string)dr["Titre"],
-                    Contenu = (string)dr["Contenu"],
-                    DateModification = (DateTime)dr["DateModification"],
-                    Revision = (int)dr["Revision"],
-                    IdContributeur = (int)dr["IdContributeur"]                    
+                    accederTitre = (string)dr["Titre"],
+                    accederContenu = (string)dr["Contenu"],
+                    accederDateModification = (DateTime)dr["DateModification"],
+                    accederRevision = (int)dr["Revision"],
+                    accederIdContributeur = (int)dr["IdContributeur"]                    
                 };                
                 return a;
             }
@@ -149,9 +149,9 @@ namespace wikiPr.Models {
         public static void Update(Article a, int id) {
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
-            string requete = "UPDATE Article SET Titre = '" + a.Titre +
-                 "', DateModification = '" + DateTime.Now + "', Contenu = '" + a.Contenu + "', IdContributeur = " + id
-                 + " WHERE Titre = '" + a.Titre + "'";
+            string requete = "UPDATE Article SET Titre = '" + a.accederTitre +
+                 "', DateModification = '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', Contenu = '" + a.accederContenu + "', IdContributeur = " + id
+                 + " WHERE Titre = '" + a.accederTitre + "'";
 
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
@@ -166,7 +166,7 @@ namespace wikiPr.Models {
         public static void Delete(Article a) {
             string chConnexion = ConfigurationManager.ConnectionStrings["WikiCon"].ConnectionString;
             SqlConnection connexion = new SqlConnection(chConnexion);
-            string requete = "DELETE FROM Article WHERE Titre = '" + a.Titre + "'";
+            string requete = "DELETE FROM Article WHERE Titre = '" + a.accederTitre + "'";
             SqlCommand commande = new SqlCommand(requete, connexion);
             commande.CommandType = System.Data.CommandType.Text;
             try {

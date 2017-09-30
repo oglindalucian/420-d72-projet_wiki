@@ -101,13 +101,13 @@
                         try {
 
                             foreach (Article a in ViewBag.lesArticles) {
-                                letitre = a.Titre;
+                                letitre = a.accederTitre;
                                <tr>
                                     <td>
                                         @Html.ActionLink(letitre, "afficher", "home", new { Titre = letitre }, null)
                                     </td>
                                     <td>
-                                        @a.DateModification
+                                        @a.accederDateModification
                                     </td>
                                 </tr>
                             }
@@ -128,7 +128,7 @@
     @{ if (ViewBag.lesArticles != null) {
                 try {
                     foreach (Article a in ViewBag.lesArticles) {
-                        letitre = a.Titre;
+                        letitre = a.accederTitre;
                         listedestitres.Add(letitre);
                         compteur++;
                     }

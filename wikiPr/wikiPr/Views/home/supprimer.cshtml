@@ -84,7 +84,7 @@
     
             <dd>
                 <div class="affichageTitre" style="margin-left:20px;">
-                    @Html.DisplayFor(model => model.Titre)
+                    @Html.DisplayFor(model => model.accederTitre)
                 </div>
             </dd>
     
@@ -104,7 +104,7 @@
             <dd>
                 <br /><br />
                 <div class="ladate">
-                    @ladate @Html.DisplayFor(model => model.DateModification)
+                    @ladate @Html.DisplayFor(model => model.accederDateModification)
                 </div>
             </dd>
     
@@ -115,7 +115,7 @@
     
             <dd>
                 <div class="ladate">
-                    @revision @Html.DisplayFor(model => model.Revision)
+                    @revision @Html.DisplayFor(model => model.accederRevision)
                 </div>
             </dd>
     
@@ -137,7 +137,7 @@
     
             <div class="form-actions no-color">
                 <input type="submit" value="@effacer" class="btn btn-default" /> |
-                @Html.ActionLink(@annuler, "afficher", new { Titre = Model.Titre }, null)
+                @Html.ActionLink(@annuler, "afficher", new { Titre = Model.accederTitre }, null)
             </div>
         }
     </div>
