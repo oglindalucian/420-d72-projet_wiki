@@ -8,7 +8,7 @@ using wikiPr.Ressource;
 namespace wikiPr.Models {
     public class Article {
 
-        public long ArticleId { get; set; }
+        public int ArticleId { get; set; }
         // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
         [Display(Name = "Titre")]

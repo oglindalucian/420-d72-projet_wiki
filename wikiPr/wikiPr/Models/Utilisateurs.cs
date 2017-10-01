@@ -299,7 +299,7 @@ namespace wikiPr.Models {
 
                     dataReader.Close();
                     return encodedPasswordSentToForm.Trim() == encodedPasswordOnServer.Trim();
-                   
+                    //return passwd.Trim() == encodedPasswordOnServer.Trim();
                 }
 
                 catch (Exception e) {
