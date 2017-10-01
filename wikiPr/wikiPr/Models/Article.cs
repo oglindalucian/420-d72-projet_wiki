@@ -8,11 +8,11 @@ using wikiPr.Ressource;
 namespace wikiPr.Models {
     public class Article {
 
-
+        public long ArticleId { get; set; }
         // [Display(Name = "Titre", ResourceType = typeof(ResourceView))]
         [Required(ErrorMessage = "Le titre est requis ")]
         [Display(Name = "Titre")]
-        public string Titre { get; set; }
+        private string Titre { get; set; }
 
         //[Display(Name = "Contenu de l'article", ResourceType = typeof(ResourceView))]
         [Display(Name = "Contenu de l'article")]
@@ -65,6 +65,14 @@ namespace wikiPr.Models {
         public Article(string titre, string contenu) {
             this.accederTitre = titre;
             this.accederContenu = contenu;
+        }
+
+        public Article (string titre, string contenu, DateTime d) {
+            this.accederTitre = titre;
+            this.accederContenu = contenu;
+            this.accederDateModification = d;
+            //this.accederRevision = revision;
+            //this.accederIdContributeur = id;
         }
 
         public static List<Article> lesArticles() {

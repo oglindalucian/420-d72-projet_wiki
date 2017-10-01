@@ -76,6 +76,14 @@ namespace wikiPr.Models {
             this.NomFamille = up.NomFamille;
             this.Langue = up.Langue;
         } 
+
+        public Utilisateur(string p, string nf, string c, string mdp, string l) {
+            this.accederPrenom = p;
+            this.accederNomFamille = nf;
+            this.accederCourriel = c;
+            this.accederMDP = mdp;
+            this.accederLangue = l;
+        }
         
         public string accederPrenom {
             get { return Prenom; }
