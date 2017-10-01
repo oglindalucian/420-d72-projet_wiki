@@ -153,7 +153,8 @@ namespace wikiPr.Controllers
             string courriel = User.Identity.Name;
             Utilisateur u = Utilisateurs.FindByCourriel(courriel);
             int id = u.Id;
-            Article.Update(a, id);
+            Article.Update(a, id);//!!!!!
+            //EntitiesContext.update(a);
 
             return RedirectToAction("afficher", new { Titre = a.accederTitre });
         }

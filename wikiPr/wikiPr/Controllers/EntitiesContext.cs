@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using wikiPr.Models;
+using wikiPr.Controllers;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
@@ -11,12 +12,16 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Configuration;
 using wikiPr.Models.Views;
+using System.Globalization;
+
+
 
 namespace wikiPr.Controllers {
+    
     public class EntitiesContext : DbContext {
         public DbSet<Article> ArticleEntities { get; set; }
         public DbSet<Utilisateur> UtilisateurEntities { get; set; }
-        public EntitiesContext() : base("DefaultConnection") //base("WikiCon") 
+        public EntitiesContext() : base("WikiCon")  //    base("defaultConnection")
         {
             Database.SetInitializer<EntitiesContext>(new CreateDatabaseIfNotExists<EntitiesContext>());  //créer la BD
         }
@@ -35,14 +40,14 @@ namespace wikiPr.Controllers {
             modelBuilder.Entity<Article>().Property(t => t.accederIdContributeur).HasColumnName("IdContributeur");
 
             modelBuilder.Entity<Article>().Property(t => t.accederTitre).IsUnicode(true).HasMaxLength(50).IsRequired(); 
-            modelBuilder.Entity<Article>().Property(t => t.accederContenu).IsUnicode(true).HasMaxLength(5000);
-            modelBuilder.Entity<Article>().Property(p => p.accederDateModification).HasColumnType("datetime2");
+            modelBuilder.Entity<Article>().Property(t => t.accederContenu).IsUnicode(true).HasMaxLength(4000);
+            modelBuilder.Entity<Article>().Property(p => p.accederDateModification).HasColumnType("datetime");
             modelBuilder.Entity<Article>().Property(p => p.accederRevision).HasColumnType("INT");
             modelBuilder.Entity<Article>().Property(p => p.accederIdContributeur).HasColumnType("INT");
 
             //////
 
-            modelBuilder.Entity<Utilisateur>().ToTable("Utilisateur", "dbo"); //creer table Utilisateur
+            modelBuilder.Entity<Utilisateur>().ToTable("Utilisateurs", "dbo"); //creer table Utilisateur
             modelBuilder.Entity<Utilisateur>().Property(t => t.Id).HasColumnName("Id").HasColumnType("INT");
             modelBuilder.Entity<Utilisateur>().HasKey(t => t.Id);
             modelBuilder.Entity<Utilisateur>().Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).IsRequired();
@@ -64,16 +69,16 @@ namespace wikiPr.Controllers {
 
         }
 
-        public class EntitiesInitialize : CreateDatabaseIfNotExists<EntitiesContext> {
-            protected override void Seed(EntitiesContext context) {
-                base.Seed(context);
-                context.ArticleEntities.Add(new Article("article1", "WIKI", new DateTime(2017 - 08 - 09))); //nouveau article
-                context.UtilisateurEntities.Add(new Utilisateur("Prenom1", "Nom1", "courriel1@a.a", "aaaaaa", "fr")); //nouvel utilisateur
-                context.SaveChanges();
-                var initializer = new EntitiesInitialize(); //nouvelle instance de la classe
-                initializer.InitializeDatabase(new EntitiesContext());
-            }
-        }
+        //public class EntitiesInitialize : CreateDatabaseIfNotExists<EntitiesContext> {
+        //    protected override void Seed(EntitiesContext context) {
+        //        base.Seed(context);
+        //        context.ArticleEntities.Add(new Article("article1", "WIKI", new DateTime(2017 - 08 - 09))); //nouveau article
+        //        context.UtilisateurEntities.Add(new Utilisateur("Prenom1", "Nom1", "courriel1@a.a", "aaaaaa", "fr")); //nouvel utilisateur
+        //        context.SaveChanges();
+        //        var initializer = new EntitiesInitialize(); //nouvelle instance de la classe
+        //        initializer.InitializeDatabase(new EntitiesContext());
+        //    }
+        //}
 
         public Article Find(int id) {
             EntitiesContext context = new EntitiesContext();
@@ -105,16 +110,46 @@ namespace wikiPr.Controllers {
 
         public static void ajouter(Article a) {
             EntitiesContext context = new EntitiesContext();
+            a.accederIdContributeur = 1;
+            a.accederRevision = 0;
+            a.accederDateModification = DateTime.Now;
             context.ArticleEntities.Add(a);
             context.SaveChanges();
         }
 
         public static void ajouter(Utilisateur u) {
             EntitiesContext context = new EntitiesContext();
+
+            byte[] hashPassword = new UTF8Encoding().GetBytes(u.accederMDP);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+            string hashString = BitConverter.ToString(hash);
+            u.accederMDP = hashString;
+
             context.UtilisateurEntities.Add(u);
             context.SaveChanges();
         }
-              
+
+        public static void update(Article a) {
+            EntitiesContext context = new EntitiesContext();
+            //string courriel = User.Identity.Name;
+            //Utilisateur u = Utilisateurs.FindByCourriel(courriel);
+            //int id = u.Id;
+            a.accederIdContributeur = 1;//id;
+
+            context.SaveChanges();
+        }
+
+        public static void update(Utilisateur u) {
+            EntitiesContext context = new EntitiesContext();
+
+            byte[] hashPassword = new UTF8Encoding().GetBytes(u.accederMDP);
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
+            string hashString = BitConverter.ToString(hash);
+            u.accederMDP = hashString;
+
+            context.SaveChanges();
+        }
+
 
         public static void supprimer(Article a) {
             EntitiesContext context = new EntitiesContext();

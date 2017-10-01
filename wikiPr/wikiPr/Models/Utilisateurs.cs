@@ -106,7 +106,7 @@ namespace wikiPr.Models {
                 byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(hashPassword);
                 string hashString = BitConverter.ToString(hash);
 
-                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id;      
+                string requete = "UPDATE Utilisateurs SET MDP = '" + hashString + "' WHERE Id = " + u.Id; //etait hashString  ump.MDP2
 
                 SqlCommand cmd = new SqlCommand(requete, connexion);
                 cmd.CommandType = System.Data.CommandType.Text;
@@ -276,8 +276,9 @@ namespace wikiPr.Models {
 
         
         public static bool Authentifie(string login, string passwd) {
-           
-           using (SqlConnection cnx = new SqlConnection(ConnectionString)) {
+         //  string conStr = ConfigurationManager.ConnectionStrings["defaultConnection"].ConnectionString;
+            using (SqlConnection cnx = new SqlConnection(ConnectionString)) {
+               
                 string requete = "SELECT * FROM Utilisateurs WHERE Courriel = '" + login + "'";
 
                 SqlCommand cmd = new SqlCommand(requete, cnx);
@@ -299,7 +300,7 @@ namespace wikiPr.Models {
 
                     dataReader.Close();
                     return encodedPasswordSentToForm.Trim() == encodedPasswordOnServer.Trim();
-                    //return passwd.Trim() == encodedPasswordOnServer.Trim();
+                   // return passwd.Trim() == encodedPasswordOnServer.Trim();
                 }
 
                 catch (Exception e) {

@@ -193,6 +193,7 @@ namespace wikiPr.Controllers
             }
             
             if (Utilisateurs.hacherMot(ump.MDP1).Trim() == u.accederMDP.Trim()) {
+          // if((ump.MDP1).Trim() == u.accederMDP.Trim()) { 
                 ViewBag.error = "";
                 if (ModelState.IsValid) {
                     Utilisateurs.Ajour(u, ump);

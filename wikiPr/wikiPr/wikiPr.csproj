@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\EntitiesContext\" />
+    <Folder Include="Views\Entities\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
