@@ -9,6 +9,7 @@ using System.Web.Security;
 using wikiPr.Models;
 using wikiPr.Models.Views;
 using wikiPr.Ressource;
+using wikiPr.Controllers;
 
 namespace wikiPr.Controllers
 {
@@ -104,7 +105,8 @@ namespace wikiPr.Controllers
         public ActionResult Inscription(UtilisateurInscription ui) {
             Utilisateur u = new Utilisateur(ui);
             if (ModelState.IsValid) { 
-                Utilisateurs.Add(u);
+               // Utilisateurs.Add(u);
+                EntitiesContext.ajouter(u);
                 return RedirectToAction("index", "home");
             }
             return View();

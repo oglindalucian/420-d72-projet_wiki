@@ -107,7 +107,8 @@ namespace wikiPr.Controllers
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult ajouter(Article a) {
-            Article.Add(a);
+           // Article.Add(a);
+            EntitiesContext.ajouter(a);
             string courriel = User.Identity.Name;
             Utilisateur u = Utilisateurs.FindByCourriel(courriel);
             int id = u.Id;
@@ -179,7 +180,8 @@ namespace wikiPr.Controllers
 
         [HttpPost]
         public ActionResult supprimer(Article a) {
-            Article.Delete(a);
+           // Article.Delete(a);
+            EntitiesContext.supprimer(a);
             return RedirectToAction("Index");
         }
 
