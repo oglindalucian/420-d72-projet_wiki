@@ -88,15 +88,6 @@ namespace wikiPr.Ressource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Id du contributeur.
-        /// </summary>
-        public static string IdContributeur {
-            get {
-                return ResourceManager.GetString("IdContributeur", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Langue.
         /// </summary>
         public static string Langue {

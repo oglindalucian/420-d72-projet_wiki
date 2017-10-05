@@ -129,9 +129,6 @@
   <data name="DateModification" xml:space="preserve">
     <value>Modification Date</value>
   </data>
-  <data name="IdContributeur" xml:space="preserve">
-    <value>Contributor's Id</value>
-  </data>
   <data name="Langue" xml:space="preserve">
     <value>Language</value>
   </data>

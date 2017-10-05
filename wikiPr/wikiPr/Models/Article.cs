@@ -28,7 +28,7 @@ namespace wikiPr.Models {
 
         // [Display(Name = "Id du contributeur", ResourceType = typeof(ResourceView))]
         [Display(Name = "Id du contributeur")]
-        public int IdContributeur { get; set; }
+        private int IdContributeur { get; set; }
 
         public string accederTitre {
             get { return Titre; }
